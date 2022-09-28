@@ -21,8 +21,9 @@ When making actual changes, check out the [contribution guide](ContributionGuide
 
 ## Documentation
 
-Below will contain links to the important project documentation, such as the design document, important class diagrams, etc.
-* [Planning Overview]()
-* [Design Document]()
-* [Technical Documentation]()
-* [UI/UX Documentation]()
+Below will contain links to documentation for different project areas, such as the design and project planning.
+* [Project Planning](/PlanningDocumentation/PlanningOverview.md)
+* [Design](/DesignDocumentation/DesignOverview.md)
+* [Technical](/TechnicalDocumentation/TechnicalOverview.md)
+* [UI/UX](/UIUXDocumentation/UIUXOverview.md)
+* [Release](/ReleaseDocumentation/ReleaseOverview.md)
