@@ -1,5 +1,5 @@
 # HalloweenJam
-Developed for Themed Horror Game Jam #9 - Halloween Edition
+Developed for [Themed Horror Game Jam #9 - Halloween Edition](https://itch.io/jam/themed-horror-game-jam-9)
 
 ## Table of Contents
 
