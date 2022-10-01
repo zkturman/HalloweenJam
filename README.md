@@ -11,7 +11,7 @@ Developed for [Themed Horror Game Jam #9 - Halloween Edition](https://itch.io/ja
 
 ## Software and Version Info
 
-Engine: Unity v2021.3.10f1
+Engine: Unity v2021.3.11f1
 
 ## How to Contribute
 
