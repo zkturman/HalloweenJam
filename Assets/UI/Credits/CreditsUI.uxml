@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/BasicStyles.uss?fileID=7433441132597879392&amp;guid=ae15515b853940a4cb7567c8d8bc16da&amp;type=3#BasicStyles" />
+    <ui:VisualElement name="Background" class="backgroundColour" style="width: 100%; height: 100%; align-items: center; justify-content: space-between;">
+        <ui:Label text="Credits" display-tooltip-when-elided="true" name="CreditsTitle" style="-unity-text-align: upper-center; font-size: 35px;" />
+        <ui:GroupBox name="CreditsBox" style="flex-basis: 60%; width: 100%;" />
+        <ui:GroupBox name="ButtonBox" class="buttonWideBox" style="flex-direction: row; justify-content: space-between;">
+            <ui:Button text="Continue?" display-tooltip-when-elided="true" name="ContinueButton" style="width: 45%;" />
+            <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" style="width: 45%;" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
