@@ -32,6 +32,12 @@ namespace StarterAssets
 		public float JumpTimeout = 0.1f;
 		[Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
 		public float FallTimeout = 0.15f;
+        
+		[Space(10)]
+		[Tooltip("Time in seconds required to pass before player peform a subsequent attack.")]
+		public float AttackTimeout = 0.50f;
+		[Tooltip("Check if player is currently performing an attack.")]
+		public bool Attacking = false;
 
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
@@ -51,6 +57,8 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
+
+
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -63,6 +71,7 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+		private float _attackTimeoutDelta;
 
 	
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -71,6 +80,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		private SkullWeaponBehaviour _skullWeapon;
 
 		private const float _threshold = 0.01f;
 
@@ -104,6 +114,7 @@ namespace StarterAssets
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
+			_skullWeapon = GetComponentInChildren<SkullWeaponBehaviour>();
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
@@ -114,6 +125,7 @@ namespace StarterAssets
 		{
 			JumpAndGravity();
 			GroundedCheck();
+			LightAttack();
 			Move();
 		}
 
@@ -121,6 +133,26 @@ namespace StarterAssets
 		{
 			CameraRotation();
 		}
+
+		private void LightAttack()
+        {
+			if (_input.attack && !Attacking)
+            {
+				_attackTimeoutDelta = AttackTimeout;
+				Attacking = true;
+				_skullWeapon.StartAttack();
+            }
+            
+			if (Attacking)
+            {
+				_attackTimeoutDelta -= Time.deltaTime;
+				if (_attackTimeoutDelta <= 0.0f)
+                {
+					Attacking = false;
+					_input.attack = false;
+                }
+            }
+        }
 
 		private void GroundedCheck()
 		{
