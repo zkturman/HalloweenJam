@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
+    [SerializeField]
+    private SkullWeaponBehaviour skullBehaviour;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +20,30 @@ public class PlayerCollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "LightRecharge")
-        {
-            Debug.Log("Recharging light!");
-        }
         if (collision.gameObject.tag == "NetherShard")
         {
+            Debug.Log("Collect Nether Shard!");
+        }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "LightRecharge")
+        {
+            if (skullBehaviour.gameObject.activeSelf)
+            {
+                skullBehaviour.Recharge();
+            }
+        }
+        if (other.tag == "EffulgentSkull")
+        {
+            if (!skullBehaviour.enabled)
+            {
+                skullBehaviour.gameObject.SetActive(true);
+                skullBehaviour.enabled = true;
+                Destroy(other.gameObject);
+            }
         }
     }
 }

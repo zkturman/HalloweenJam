@@ -7,9 +7,11 @@ public class SkullWeaponBehaviour : MonoBehaviour
     [SerializeField]
     private int maxCharges;
     private int remainingCharges;
-    private bool isAttacking = false;
     [SerializeField]
     private HolyLightBurstBehaviour lightBurst;
+    [SerializeField]
+    private float attackRadius;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,21 +33,18 @@ public class SkullWeaponBehaviour : MonoBehaviour
         }
     }
 
-    private bool canStartAttack()
+    private void affectMonsters()
     {
-        return remainingCharges > 0 && !isAttacking;
+        Physics.OverlapSphere(transform.position, attackRadius);
     }
-
-    //private IEnumerator attackRoutine()
-    //{
-    //    isAttacking = true;
-    //    remainingCharges--;
-    //    yield return new WaitForSeconds(cooldownInSeconds);
-    //    isAttacking = false;
-    //}
 
     public void Recharge()
     {
         remainingCharges = maxCharges;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackRadius);   
     }
 }

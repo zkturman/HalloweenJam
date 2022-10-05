@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - LightRecharge
+  - EffulgentSkull
   layers:
   - Default
   - TransparentFX

@@ -114,7 +114,7 @@ namespace StarterAssets
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
-			_skullWeapon = GetComponentInChildren<SkullWeaponBehaviour>();
+			_skullWeapon = GetComponentInChildren<SkullWeaponBehaviour>(true);
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
@@ -140,7 +140,10 @@ namespace StarterAssets
             {
 				_attackTimeoutDelta = AttackTimeout;
 				Attacking = true;
-				_skullWeapon.StartAttack();
+				if (_skullWeapon.enabled)
+				{
+					_skullWeapon.StartAttack();
+				}
             }
             
 			if (Attacking)
