@@ -35,7 +35,11 @@ public class SkullWeaponBehaviour : MonoBehaviour
 
     private void affectMonsters()
     {
-        Physics.OverlapSphere(transform.position, attackRadius);
+        Collider[] affectedObjects = Physics.OverlapSphere(transform.position, attackRadius, Physics.AllLayers, QueryTriggerInteraction.Collide);
+        if (affectedObjects.Length > 0)
+        {
+
+        }
     }
 
     public void Recharge()

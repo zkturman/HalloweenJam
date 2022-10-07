@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/BasicStyles.uss?fileID=7433441132597879392&amp;guid=ae15515b853940a4cb7567c8d8bc16da&amp;type=3#BasicStyles" />
-    <ui:VisualElement name="Background" style="width: 100%; height: 100%; background-color: rgb(11, 0, 17); justify-content: flex-end; align-items: center; background-image: url(&apos;project://database/Assets/UI/UnderRailSplashImage.png?fileID=2800000&amp;guid=7e8e440730c27ef4f9cbdbd949acdaf8&amp;type=3#UnderRailSplashImage&apos;);">
+    <ui:VisualElement name="Background" style="width: 100%; height: 100%; background-color: rgb(13, 13, 13); justify-content: flex-end; align-items: center; background-image: none;">
+        <ui:VisualElement name="SplashImage" style="background-image: url(&apos;project://database/Assets/UI/UnderRailSplashImage.png?fileID=2800000&amp;guid=7e8e440730c27ef4f9cbdbd949acdaf8&amp;type=3#UnderRailSplashImage&apos;); width: 100%; height: 100%; align-items: auto; justify-content: center; position: absolute; left: auto; top: auto;" />
         <ui:GroupBox name="ButtonGroup" style="width: 15%; height: 30%; justify-content: space-between; align-items: center; margin-bottom: 50px;">
             <ui:Button text="Start" display-tooltip-when-elided="true" name="StartButton" style="width: 75%; height: 30%;" />
             <ui:Button text="Settings" display-tooltip-when-elided="true" name="SettingsButton" style="width: 75%; height: 30%;" />
