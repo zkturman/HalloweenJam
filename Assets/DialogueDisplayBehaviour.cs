@@ -7,6 +7,10 @@ public class DialogueDisplayBehaviour : MonoBehaviour
 {
     [SerializeField]
     private MainGameUIController mainGameUIController;
+    [SerializeField]
+    private string dialogueEntryMessasge;
+    private string[] dialogueLines;
+    private int currentLine = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +23,47 @@ public class DialogueDisplayBehaviour : MonoBehaviour
         
     }
 
-    public void DisplayDialogue(string dialogueText)
+    public void DisplayDialogueEntryPoint()
     {
-        mainGameUIController.AddDialogue(dialogueText, false);
+        mainGameUIController.AddMessage(dialogueEntryMessasge);
+    }
+
+    public void AddStepThroughDialogue(string[] dialogueLines)
+    {
+        this.dialogueLines = dialogueLines;
+    }
+
+    public void DisplayNextLine()
+    {
+        string nextLine = dialogueLines[currentLine];
+        currentLine++;
+        bool isFinished = IsDialogueFinished();
+        mainGameUIController.AddDialogue(nextLine, isFinished);
+    }
+
+    public bool IsDialogueFinished()
+    {
+        bool isFinished = false;
+        if (dialogueLines == null)
+        {
+            isFinished = true;
+        }
+        else
+        {
+            isFinished = dialogueLines.Length == currentLine;
+        }
+        return isFinished;
     }
 
     public void DisplayPassingDialogue(string dialogueText)
     {
 
+    }
+
+    public void ClearDialogue()
+    {
+        Debug.Log("Cleared dialogue");
+        mainGameUIController.AddMessage("");
+        currentLine = 0;
     }
 }

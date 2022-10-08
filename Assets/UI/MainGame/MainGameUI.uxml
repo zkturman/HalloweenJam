@@ -21,7 +21,7 @@
                 <ui:Label text="&lt;Update message placeholder&gt;" display-tooltip-when-elided="true" style="-unity-text-align: upper-center;" />
             </ui:VisualElement>
             <ui:VisualElement name="DialogueBox" style="height: 70%; width: 70%; left: 15%; background-color: rgba(163, 245, 195, 0.2); justify-content: center;">
-                <ui:Label text="&lt;Dialogue and message placeholder&gt;" display-tooltip-when-elided="true" name="DialogueLabel" style="-unity-text-align: upper-center;" />
+                <ui:Label display-tooltip-when-elided="true" name="DialogueLabel" text="test" style="-unity-text-align: upper-center; font-size: 20px; -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgba(214, 0, 27, 255); color: rgba(255, 255, 255, 255); text-shadow: 0.75px 0.2px 0.5px rgba(0, 0, 0, 255);" />
             </ui:VisualElement>
         </ui:GroupBox>
     </ui:VisualElement>

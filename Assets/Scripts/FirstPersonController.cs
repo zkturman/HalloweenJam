@@ -39,6 +39,11 @@ namespace StarterAssets
 		[Tooltip("Check if player is currently performing an attack.")]
 		public bool Attacking = false;
 
+		[Space(10)]
+		[Tooltip("Check if player is interacting with an object.")]
+		public bool Interacting = false;
+		public bool CanInteract = false;
+
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
 		public bool Grounded = true;
@@ -81,6 +86,7 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 		private SkullWeaponBehaviour _skullWeapon;
+		private DialogueDisplayBehaviour _dialogueDisplay;
 
 		private const float _threshold = 0.01f;
 
@@ -115,7 +121,7 @@ namespace StarterAssets
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 			_skullWeapon = GetComponentInChildren<SkullWeaponBehaviour>(true);
-
+			_dialogueDisplay = FindObjectOfType<DialogueDisplayBehaviour>();
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
@@ -126,6 +132,7 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			LightAttack();
+			DialogueInteract();
 			Move();
 		}
 
@@ -133,6 +140,36 @@ namespace StarterAssets
 		{
 			CameraRotation();
 		}
+
+		private void DialogueInteract()
+        {
+			if (CanInteract && !Interacting)
+            {
+				_dialogueDisplay.DisplayDialogueEntryPoint();
+            }
+			if (_input.interact && !Interacting)
+            {
+				Interacting = true;
+            }
+			else if (Interacting && _input.interact)
+            {
+				if (_dialogueDisplay.IsDialogueFinished())
+				{
+					Interacting = false;
+					_input.interact = false;
+					_dialogueDisplay.ClearDialogue();
+				}
+                else
+                {
+					_dialogueDisplay.DisplayNextLine();
+					_input.interact = false;
+                }
+			}
+			if (!CanInteract && !Interacting)
+            {
+				_dialogueDisplay.ClearDialogue();
+            }
+        }
 
 		private void LightAttack()
         {

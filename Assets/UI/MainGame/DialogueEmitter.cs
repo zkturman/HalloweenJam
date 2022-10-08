@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueEmitter : MonoBehaviour, TextEmitter
 {
     [SerializeField]
-    private List<string> dialogueLines;
+    private string[] dialogueLines;
     private DialogueDisplayBehaviour dialogueManager;
 
     private void Awake()
@@ -15,6 +15,6 @@ public class DialogueEmitter : MonoBehaviour, TextEmitter
 
     public void EmitText()
     {
-        dialogueManager.DisplayDialogue(dialogueLines[0]);
+        dialogueManager.AddStepThroughDialogue(dialogueLines);
     }
 }
