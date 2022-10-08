@@ -165,8 +165,9 @@ namespace StarterAssets
 					_input.interact = false;
                 }
 			}
-			if (!CanInteract && !Interacting)
+			if (!CanInteract)
             {
+				Interacting = false;
 				_dialogueDisplay.ClearDialogue();
             }
         }
