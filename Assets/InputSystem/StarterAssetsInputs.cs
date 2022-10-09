@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool attack;
 		public bool interact;
+		public bool journal;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -55,6 +56,11 @@ namespace StarterAssets
         {
 			InteractInput(value.isPressed);
         }
+
+		public void OnJournal(InputValue value)
+        {
+			JournalInput(value.isPressed);
+        }
 #endif
 
 
@@ -86,6 +92,11 @@ namespace StarterAssets
 		public void InteractInput(bool newInteractState)
         {
 			interact = newInteractState;
+        }
+
+		public void JournalInput(bool newJournalState)
+        {
+			journal = newJournalState;
         }
 		
 		private void OnApplicationFocus(bool hasFocus)
