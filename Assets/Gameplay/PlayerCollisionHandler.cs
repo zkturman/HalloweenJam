@@ -1,33 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
     [SerializeField]
     private SkullWeaponBehaviour skullBehaviour;
     [SerializeField]
-    private float interactionMaxDistance;
-    private LayerMask interactionLayer;
+    private FirstPersonController controller;
+
     // Start is called before the first frame update
     void Start()
     {
-        interactionLayer = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void DetectInteractables()
-    {
-        if (Physics.Raycast(transform.position, transform.forward, interactionMaxDistance, interactionLayer))
-        {
-
-        }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -56,6 +44,21 @@ public class PlayerCollisionHandler : MonoBehaviour
                 skullBehaviour.enabled = true;
                 Destroy(other.gameObject);
             }
+        }
+        if (other.tag == "Interactable")
+        {
+            Debug.Log("Should enable interaction.");
+            controller.CanInteract = true;
+            other.gameObject.GetComponent<DialogueEmitter>().EmitText();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Interactable")
+        {
+            Debug.Log("Should disable interaction");
+            controller.CanInteract = false;
         }
     }
 }
