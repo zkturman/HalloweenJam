@@ -144,6 +144,9 @@ GameObject:
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 8616685848737228376}
   - component: {fileID: 1279388641079743550}
+  - component: {fileID: 4042918400770871321}
+  - component: {fileID: 6142972049329990099}
+  - component: {fileID: 4785965665267274939}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -199,25 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 4
-  SprintSpeed: 6
-  RotationSpeed: 1
-  SpeedChangeRate: 10
-  JumpHeight: 1.2
-  Gravity: -15
-  JumpTimeout: 0.1
-  FallTimeout: 0.15
-  AttackTimeout: 0.5
-  Attacking: 0
-  Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.5
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 513
-  CinemachineCameraTarget: {fileID: 4135013735270702863}
-  TopClamp: 89
-  BottomClamp: -89
 --- !u!114 &1978471637655604388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +236,8 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   attack: 0
+  interact: 0
+  journal: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -361,12 +347,70 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1fda4ffa20ef804c8300c45661f6da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skullBehaviour: {fileID: 0}
+  skullBehaviour: {fileID: 3634328238834409236}
+  controller: {fileID: 0}
+--- !u!114 &4042918400770871321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3105feb910f2540a51622d24cf4a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 4
+  SprintSpeed: 6
+  RotationSpeed: 1
+  SpeedChangeRate: 10
+  JumpHeight: 1.2
+  Gravity: -15
+  JumpTimeout: 0.1
+  FallTimeout: 0.15
+  AttackTimeout: 0.5
+  Attacking: 0
+  Interacting: 0
+  CanInteract: 0
+  Grounded: 1
+  GroundedOffset: -0.14
+  GroundedRadius: 0.5
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  CinemachineCameraTarget: {fileID: 4135013735270702863}
+  TopClamp: 89
+  BottomClamp: -89
+--- !u!114 &6142972049329990099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa99eb4526fc2524fa7726a051203dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4785965665267274939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8ca10fb79ec2a488b8fb7c2c01807e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6602138720500825148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,6 +541,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6602138720500825148}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3634328238834409236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7633663391238251304, guid: 367e3974a5a510a45a80319615117d95,
+    type: 3}
+  m_PrefabInstance: {fileID: 6602138720500825148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a66124c0cf37845acaa1ee391bc448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7821327848280799111 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969204072223345595, guid: 367e3974a5a510a45a80319615117d95,

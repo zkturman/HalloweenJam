@@ -6,7 +6,7 @@ public class PlayerCollisionHandler : MonoBehaviour
     [SerializeField]
     private SkullWeaponBehaviour skullBehaviour;
     [SerializeField]
-    private FirstPersonController controller;
+    private PlayerActionState controller;
 
     // Start is called before the first frame update
     void Start()
