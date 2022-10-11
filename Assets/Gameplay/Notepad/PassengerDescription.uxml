@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:GroupBox name="InfoGroup" style="width: 95%; height: 25%; flex-direction: row; align-items: center; justify-content: space-between;">
+        <ui:VisualElement name="VisualIdentifier" style="width: 15%; height: 50%;" />
+        <ui:Label text="&lt;description&gt;" display-tooltip-when-elided="true" name="InfoText" style="width: 80%;" />
+    </ui:GroupBox>
+</ui:UXML>
