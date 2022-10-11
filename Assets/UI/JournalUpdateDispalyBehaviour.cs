@@ -41,6 +41,16 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
         buildPassengerPage(rightPageElement, 1);
     }
 
+    private void buildLeftPage()
+    {
+
+    }
+
+    private void buildRightLPage()
+    {
+
+    }
+
     private void OnDisable()
     {
         removeAllChildren(leftPageElement);

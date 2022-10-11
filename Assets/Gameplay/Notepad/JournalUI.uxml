@@ -5,7 +5,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="JournalPages" style="background-color: rgba(255, 255, 255, 0); width: 80%; height: 80%; flex-direction: row; justify-content: space-between;">
             <ui:VisualElement name="LeftPage" style="width: 50%; height: 100%; background-color: rgba(102, 218, 255, 0); justify-content: space-around;" />
-            <ui:VisualElement name="RightPage" style="width: 50%; height: 100%; background-color: rgba(255, 166, 0, 0.33); justify-content: space-around; align-items: center;" />
+            <ui:VisualElement name="RightPage" style="width: 50%; height: 100%; background-color: rgba(255, 166, 0, 0); justify-content: space-around; align-items: center;" />
         </ui:VisualElement>
         <ui:VisualElement name="TurnPageRight" style="width: 10%; justify-content: center; align-items: center;">
             <ui:VisualElement name="RightIcon" style="justify-content: center; align-items: center; background-image: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=25093f909d572634dbaac10a77037811&amp;type=3#arrow-right@2x&apos;); width: 64px; height: 64px;" />
