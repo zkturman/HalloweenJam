@@ -9,10 +9,14 @@ public class CreatureController : MonoBehaviour
     public PatrolNavPoint[] patrolNavPoints;
     public float patrolSpeed = 1f;
     public float chaseSpeed = 3f;
+
+    public AudioSource attackSound;
+    
     float sightDistance = 3000f;   // How far the creature's 'line of sight' raycast extends
     float attackDistance = 1f;   // How close the creature needs to be to the player to trigger its attack.
     float attackRecoveryTime = 1f;   // How many seconds between an attack and returning to the chase
     float surveillanceTime = 3f;   // How long the creature stays in surveillance mode before returning to its default state
+    float stunnedTime = 4f;     // (Perhaps this should be passed through from player when they stun the creature....?)
 
     int currentPatrolNavID = -1;
     Vector3 startingPosition;
@@ -158,7 +162,7 @@ public class CreatureController : MonoBehaviour
         {
             // Done as an if statement because this code will only run if the raycast hits something
                 //if (hit.rigidbody.gameObject.CompareTag("Player"))
-            if (hit.transform.gameObject.CompareTag("Player"))
+            if (hit.transform == player.transform)
             {
                 // Creature can see player
                 canSeePlayer = true;
@@ -215,6 +219,8 @@ public class CreatureController : MonoBehaviour
 
         // Temporary code
         Debug.Log("ATTTAAAAACKKK!!!!");
+        attackSound.Play();
+
 
         // Allow time for animation/attack
         yield return new WaitForSeconds(attackRecoveryTime);
@@ -291,9 +297,11 @@ public class CreatureController : MonoBehaviour
     void ReturnToNormalState()
     {
         // After a chase, the creature returns to its normal location and default behaviour
+        
         currentState = CreatureState.Returning;
         navMeshAgent.speed = patrolSpeed;
         navMeshAgent.destination = startingPosition;
+        navMeshAgent.isStopped = false;
         currentPatrolNavID = -1;  // (So that when it gets to the start point it will increment it to 0 and restart its patrol loop from the beginning
     }
     
@@ -337,13 +345,44 @@ public class CreatureController : MonoBehaviour
         }    
     }
 
-    public void Stun()
+    public void StunCreature()
     {
         // This is called from outside by the player when they use the holy light on the creature
 
-        // Remember the current state, then freeze the 
+        // The stunned state is a coroutine, which could be awkward to call from other classes (?) so this public method
+        // just does it internally...
+        StartCoroutine(EnterStunnedMode());
+
     }
     
+
+    IEnumerator EnterStunnedMode()
+    {
+        // Freeze creature.
+        navMeshAgent.isStopped = true;
+
+        // *** IF CARRYING CRYSTAL, RELEASE IT HERE ****
+
+        // *** Any other 'stunned' AV effects to be put here
+
+        // Wait in stunned state
+        float timer = 0f;
+        while (timer < stunnedTime)
+        {
+            yield return null;
+            timer += Time.deltaTime;
+        }
+        
+
+        // Unfreeze creature
+        navMeshAgent.isStopped = false;
+
+        // When un-stunned, go to Surveillance state to see if the player is still visible
+        EnterSurveillanceState();
+
+        yield break;
+    }
+
 
 }
 

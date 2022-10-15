@@ -50,6 +50,13 @@ public class CreatureControllerEditor : Editor
             Gizmos.color = Color.yellow;
         }
 
+        if (currentCreature.currentState == CreatureState.Stunned)
+        {
+            gizmoShape = "Cube";
+            Gizmos.color = Color.cyan;
+        }
+
+
         // Draw gizmo in selected color
         if (gizmoShape == "Sphere")
         {
