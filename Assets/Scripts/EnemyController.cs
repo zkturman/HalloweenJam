@@ -9,6 +9,9 @@ public class EnemyController : MonoBehaviour
     public EnemyNavPoint[] patrolNavPoints;
     public float patrolSpeed = 1f;
     public float chaseSpeed = 3f;
+    float sightDistance = 3000f;   // How far the creature's 'line of sight' raycast extends
+    float attackDistance = 1f;   // How close the creature needs to be to the player to trigger its attack.
+    float attackRecoveryTime = 1f;   // How many seconds between an attack and returning to the chase
 
     int currentPatrolNavID = -1;
     Vector3 startingPosition;
@@ -18,6 +21,7 @@ public class EnemyController : MonoBehaviour
     EnemyState defaultState;
 
     GameObject player;
+    
     
 
 
@@ -36,96 +40,216 @@ public class EnemyController : MonoBehaviour
         {
             defaultState = EnemyState.Patrol;
             currentState = EnemyState.Patrol;
-            WalkToNextPatrolNavPoint();
+            SetNextPatrolDestination();
         }
     }
 
 
     void Update()
     {
-        // If the enemy is patrolling...
-        if (currentState == EnemyState.Patrol)
+        switch (currentState)
         {
-            // Check if the enemy has reached its current destination
-            if (!navMeshAgent.pathPending)
-            {
-                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            case EnemyState.Idle:
                 {
-                    if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
-                    {
-                        // If it has, then move on to the next patrol nav point
-                        WalkToNextPatrolNavPoint();
-                    }
+                    // Do nothing, currently...
+                    break;
                 }
-            }
-        }
-        // If the enemy is chasing the player...
-        else if (currentState == EnemyState.Chase)
-        {
-            // Update destination to follow player
-            navMeshAgent.destination = player.transform.position;
-
-            // If you get within range of player - attack
-            // ....
-
-
-            // Temporary code
-            if (navMeshAgent.remainingDistance <= 1f)
-            {
-                Debug.Log("The player has been caught!!");
-                currentState = defaultState;
-                if (defaultState == EnemyState.Idle)
+            case EnemyState.Patrol:
                 {
-                    ReturnToStartPlace();
+                    Patrol();
+                    break;
                 }
-                else if (defaultState == EnemyState.Patrol)
+            case EnemyState.Chase:
                 {
-                    WalkToNextPatrolNavPoint();
+                    Chase();
+                    break;
                 }
-            }
-
+            case EnemyState.Attack:
+                {
+                    // Do nothing here - the 'attack' action is a coroutine called when the creature first enters the 'attack' state
+                    // It's not designed to be called each frame.
+                    break;
+                }
+            case EnemyState.Surveillance:
+                {
+                    Surveillance();
+                    break;
+                }
+            case EnemyState.Returning:
+                {
+                    Returning();
+                    break;
+                }
+            default: break;
         }
     }
 
 
-    void WalkToNextPatrolNavPoint()
+    void EnterPatrolMode()
     {
+        // Update state
+        currentState = EnemyState.Patrol;
+
+        // Make sure movement is enabled
+        navMeshAgent.isStopped = false;
+
+        // Set movement speed
         navMeshAgent.speed = patrolSpeed;
-        navMeshAgent.destination = GetNextWalkTarget();
+
+        // Set the next patrol destination
+        SetNextPatrolDestination();
+
+        // ??? Animation change here???
+
     }
 
-
-    void ChasePlayer()
+    void Patrol()
     {
-        navMeshAgent.speed = chaseSpeed;
-        currentState = EnemyState.Chase;
-        navMeshAgent.destination = player.transform.position;
-    }
-
-
-    void ReturnToStartPlace()
-    {
-        navMeshAgent.speed = patrolSpeed;
-        navMeshAgent.destination = startingPosition;
-    }
-    
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // This is for the enemy to 'see' the player
-
-        // Check if the collider which has entered the enemy's vision belongs to the player        
-        if (other.gameObject.CompareTag("Player"))
-        {
-            player = other.gameObject;
-            ChasePlayer();
-        }
+        // This is called each frame while the creature is in patrol mode.
         
+        // If the creature has reached its NavMesh destinaton then set a new destination
+        if (HasReachedDestination())
+        {
+            SetNextPatrolDestination();
+        }
+
+        // Otherwise just let the navmesh continue to move it towards its current destination...
     }
 
 
-    Vector3 GetNextWalkTarget()
+    void EnterChaseMode()
     {
+        // Update state
+        currentState = EnemyState.Chase;
+
+        // Make sure movement is enabled
+        navMeshAgent.isStopped = false;
+
+        // Set movement speed
+        navMeshAgent.speed = chaseSpeed;
+
+        // Set destination to player's current location
+        navMeshAgent.destination = player.transform.position;
+
+        // ??? Animation change here???
+    }
+
+
+    void Chase()
+    {
+        // This is called each frame while the creature is in chase mode
+
+        // First raycast to check if the creature has line of sight to the player
+        bool canSeePlayer = false;
+        float distanceToPlayer;
+
+        // Vector3 position of player and enemy
+        Vector3 playerLookPosition = player.transform.position + (Vector3.up * 1.25f);
+        Vector3 enemyLookPosition = this.transform.position + (Vector3.up * 1.5f);
+
+
+        RaycastHit hit;
+        Vector3 rayDirection = playerLookPosition - enemyLookPosition;
+        distanceToPlayer = rayDirection.magnitude;
+
+        if (Physics.Raycast(enemyLookPosition, rayDirection, out hit, sightDistance))
+        {
+            // Done as an if statement because this code will only run if the raycast hits something
+            if (hit.transform.gameObject.CompareTag("Player"))
+            {
+                // Enemy can see player
+                canSeePlayer = true;
+            }
+        }
+
+        if (canSeePlayer)
+        {
+            // Red debug line if the creature can see the player
+            Debug.DrawRay(enemyLookPosition, rayDirection, Color.red, 0f, true);
+
+
+            if (distanceToPlayer <= attackDistance)
+            {
+                // If in range to attack then update state and attack on next frame
+                currentState = EnemyState.Attack;
+                return;
+            }
+            else
+            {
+                // Otherwise player is out of attack range, so just update destination to player's latest location (the creature will continue moving towards 
+                navMeshAgent.destination = player.transform.position;
+
+                // *** Additional code that if the player is somewhere it can't navigate to, set destination as the nearest point to the player ***
+
+                return;
+            }
+
+        }
+        else
+        {
+
+            // Can't see player, so just continues moving to the current destination (where the player was last seen)
+
+            // Yellow debug line if the creature can see the player
+            Debug.DrawRay(enemyLookPosition, rayDirection, Color.yellow, 0f, true);
+
+            // If the creature has reached its target, enter surveillance state
+            if (HasReachedDestination())
+            {
+                EnterSurveillanceState();
+            }
+        }
+
+    }
+
+
+    IEnumerator Attack()
+    {
+        currentState = EnemyState.Attack;
+        
+        // Pause movement towards the target
+        navMeshAgent.isStopped = true;
+
+        // Temporary code
+        Debug.Log("ATTTAAAAACKKK!!!!");
+
+        // Allow time for animation/attack
+        yield return new WaitForSeconds(attackRecoveryTime);
+
+        
+
+        // Then return to chase mode (which will test if the player is still close enough to attack again)
+        EnterChaseMode();
+    }
+
+
+    void EnterSurveillanceState()
+    {
+        currentState = EnemyState.Surveillance;
+        
+        // Add waiting/looking around functionality here later, if there's time
+
+        // For now, just return to its default location/behaviour
+        ReturnToNormalState();
+    }
+
+
+    void Surveillance()
+    {
+        // Code to be added later if there is time.
+
+        // This would be behaviour where the creature stands still for a while, looking around to try to spot the player.
+        
+        // Currently the code in EnterSurveillanceState() skips past this stage.
+    }
+
+
+    void SetNextPatrolDestination()
+    {
+        // Update the navmesh agent speed with the value in the public inspector
+        // (This is for testing purposes only so the speed can be tweaked during a patrol cycle - it wouldn't be needed in the build version)
+        navMeshAgent.speed = patrolSpeed;
+
         // Select the next number for the walk cycle target array
         currentPatrolNavID++;
 
@@ -135,14 +259,86 @@ public class EnemyController : MonoBehaviour
             currentPatrolNavID = 0;
         }
 
-        // Select the related patrolNavPoint from the array
-        EnemyNavPoint nextTarget = patrolNavPoints[currentPatrolNavID];
+        // Set the NavMeshAgent destination to the position of the newly selected NavPoint
+        navMeshAgent.destination = patrolNavPoints[currentPatrolNavID].transform.position;
+    }
 
-        // Return the position of that NavPoint.
-        return nextTarget.transform.position;
 
+    bool HasReachedDestination()
+    {
+        bool answer = false;
+        if (!navMeshAgent.pathPending)
+        {
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            {
+                if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    answer = true;
+                }
+            }
+        }
+        
+        return answer;
 
     }
+
+
+    void ReturnToNormalState()
+    {
+        // After a chase, the creature returns to its normal location and default behaviour
+        currentState = EnemyState.Returning;
+        navMeshAgent.speed = patrolSpeed;
+        navMeshAgent.destination = startingPosition;
+        currentPatrolNavID = -1;  // (So that when it gets to the start point it will increment it to 0 and restart its patrol loop from the beginning
+    }
+    
+
+    void Returning()
+    {
+        // This is called each frame while the creature is returning to its normal location
+
+        // Once it has returned to its starting point, revert to its default behaviour
+        if (HasReachedDestination())
+        {
+            if (defaultState == EnemyState.Patrol)
+            {
+                EnterPatrolMode();
+            }
+            else
+            {
+                // Assume default state is idle
+                // For now just leave the creature standing still - but maybe this should be linked to surveillance type behaviour later.
+                currentState = EnemyState.Idle;
+            }
+        }
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // This is called when the creature 'sees' the player
+
+        // It is only relevant if the creature is not already in pursuit of the player
+        if (currentState == EnemyState.Idle || currentState == EnemyState.Patrol || currentState == EnemyState.Surveillance || currentState == EnemyState.Returning)
+        {
+            // Check if the collider which has entered the enemy's vision belongs to the player        
+            if (other.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Creature has seen player through TRIGGER COLLIDER");
+                player = other.gameObject;
+                EnterChaseMode();
+            }
+        }    
+    }
+
+    public void Stun()
+    {
+        // This is called from outside by the player when they use the holy light on the creature
+
+        // Remember the current state, then freeze the 
+    }
+    
 
 }
 
@@ -152,5 +348,9 @@ public enum EnemyState
 {
     Idle,
     Patrol,
-    Chase
+    Chase,
+    Attack,
+    Surveillance,
+    Returning,
+    Stunned
 }

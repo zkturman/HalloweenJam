@@ -16,7 +16,7 @@ public class EnemyNavPointEditor : Editor
         Gizmos.color = currentNavPoint.sphereColor;
 
         // Set size of sphere to be drawn
-        float sphereSize = 0.5f;
+        float sphereSize = 0.25f;
 
         // Draw sphere for the EnemyNavPoint
         Gizmos.DrawSphere(currentNavPoint.transform.position, sphereSize);
