@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyController : MonoBehaviour
+public class CreatureController : MonoBehaviour
 {
-    public EnemyNavPoint[] patrolNavPoints;
+    public PatrolNavPoint[] patrolNavPoints;
     public float patrolSpeed = 1f;
     public float chaseSpeed = 3f;
     float sightDistance = 3000f;   // How far the creature's 'line of sight' raycast extends
@@ -17,8 +17,8 @@ public class EnemyController : MonoBehaviour
     Vector3 startingPosition;
 
     NavMeshAgent navMeshAgent;
-    public EnemyState currentState;
-    EnemyState defaultState;
+    public CreatureState currentState;
+    CreatureState defaultState;
 
     GameObject player;
     
@@ -32,14 +32,14 @@ public class EnemyController : MonoBehaviour
         // Record the start position (to return to if the enemy chases the player)
         startingPosition = gameObject.transform.position;
 
-        // If no patrol nav points have been set in the inspector then the enemy is idle (just stands where it is)
+        // If no patrol nav points have been set in the inspector then the creature is idle (just stands where it is)
         if (patrolNavPoints == null) {
-            defaultState = EnemyState.Idle;
-            currentState = EnemyState.Idle;
+            defaultState = CreatureState.Idle;
+            currentState = CreatureState.Idle;
         } else
         {
-            defaultState = EnemyState.Patrol;
-            currentState = EnemyState.Patrol;
+            defaultState = CreatureState.Patrol;
+            currentState = CreatureState.Patrol;
             SetNextPatrolDestination();
         }
     }
@@ -49,33 +49,33 @@ public class EnemyController : MonoBehaviour
     {
         switch (currentState)
         {
-            case EnemyState.Idle:
+            case CreatureState.Idle:
                 {
                     // Do nothing, currently...
                     break;
                 }
-            case EnemyState.Patrol:
+            case CreatureState.Patrol:
                 {
                     Patrol();
                     break;
                 }
-            case EnemyState.Chase:
+            case CreatureState.Chase:
                 {
                     Chase();
                     break;
                 }
-            case EnemyState.Attack:
+            case CreatureState.Attack:
                 {
                     // Do nothing here - the 'attack' action is a coroutine called when the creature first enters the 'attack' state
                     // It's not designed to be called each frame.
                     break;
                 }
-            case EnemyState.Surveillance:
+            case CreatureState.Surveillance:
                 {
                     Surveillance();
                     break;
                 }
-            case EnemyState.Returning:
+            case CreatureState.Returning:
                 {
                     Returning();
                     break;
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour
     void EnterPatrolMode()
     {
         // Update state
-        currentState = EnemyState.Patrol;
+        currentState = CreatureState.Patrol;
 
         // Make sure movement is enabled
         navMeshAgent.isStopped = false;
@@ -120,7 +120,7 @@ public class EnemyController : MonoBehaviour
     void EnterChaseMode()
     {
         // Update state
-        currentState = EnemyState.Chase;
+        currentState = CreatureState.Chase;
 
         // Make sure movement is enabled
         navMeshAgent.isStopped = false;
@@ -143,21 +143,21 @@ public class EnemyController : MonoBehaviour
         bool canSeePlayer = false;
         float distanceToPlayer;
 
-        // Vector3 position of player and enemy
+        // Vector3 position of player and creature
         Vector3 playerLookPosition = player.transform.position + (Vector3.up * 1.25f);
-        Vector3 enemyLookPosition = this.transform.position + (Vector3.up * 1.5f);
+        Vector3 creatureLookPosition = this.transform.position + (Vector3.up * 1.5f);
 
 
         RaycastHit hit;
-        Vector3 rayDirection = playerLookPosition - enemyLookPosition;
+        Vector3 rayDirection = playerLookPosition - creatureLookPosition;
         distanceToPlayer = rayDirection.magnitude;
 
-        if (Physics.Raycast(enemyLookPosition, rayDirection, out hit, sightDistance))
+        if (Physics.Raycast(creatureLookPosition, rayDirection, out hit, sightDistance))
         {
             // Done as an if statement because this code will only run if the raycast hits something
             if (hit.transform.gameObject.CompareTag("Player"))
             {
-                // Enemy can see player
+                // Creature can see player
                 canSeePlayer = true;
             }
         }
@@ -165,13 +165,13 @@ public class EnemyController : MonoBehaviour
         if (canSeePlayer)
         {
             // Red debug line if the creature can see the player
-            Debug.DrawRay(enemyLookPosition, rayDirection, Color.red, 0f, true);
+            Debug.DrawRay(creatureLookPosition, rayDirection, Color.red, 0f, true);
 
 
             if (distanceToPlayer <= attackDistance)
             {
                 // If in range to attack then update state and attack on next frame
-                currentState = EnemyState.Attack;
+                currentState = CreatureState.Attack;
                 return;
             }
             else
@@ -191,7 +191,7 @@ public class EnemyController : MonoBehaviour
             // Can't see player, so just continues moving to the current destination (where the player was last seen)
 
             // Yellow debug line if the creature can see the player
-            Debug.DrawRay(enemyLookPosition, rayDirection, Color.yellow, 0f, true);
+            Debug.DrawRay(creatureLookPosition, rayDirection, Color.yellow, 0f, true);
 
             // If the creature has reached its target, enter surveillance state
             if (HasReachedDestination())
@@ -205,7 +205,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator Attack()
     {
-        currentState = EnemyState.Attack;
+        currentState = CreatureState.Attack;
         
         // Pause movement towards the target
         navMeshAgent.isStopped = true;
@@ -225,7 +225,7 @@ public class EnemyController : MonoBehaviour
 
     void EnterSurveillanceState()
     {
-        currentState = EnemyState.Surveillance;
+        currentState = CreatureState.Surveillance;
         
         // Add waiting/looking around functionality here later, if there's time
 
@@ -286,7 +286,7 @@ public class EnemyController : MonoBehaviour
     void ReturnToNormalState()
     {
         // After a chase, the creature returns to its normal location and default behaviour
-        currentState = EnemyState.Returning;
+        currentState = CreatureState.Returning;
         navMeshAgent.speed = patrolSpeed;
         navMeshAgent.destination = startingPosition;
         currentPatrolNavID = -1;  // (So that when it gets to the start point it will increment it to 0 and restart its patrol loop from the beginning
@@ -300,7 +300,7 @@ public class EnemyController : MonoBehaviour
         // Once it has returned to its starting point, revert to its default behaviour
         if (HasReachedDestination())
         {
-            if (defaultState == EnemyState.Patrol)
+            if (defaultState == CreatureState.Patrol)
             {
                 EnterPatrolMode();
             }
@@ -308,7 +308,7 @@ public class EnemyController : MonoBehaviour
             {
                 // Assume default state is idle
                 // For now just leave the creature standing still - but maybe this should be linked to surveillance type behaviour later.
-                currentState = EnemyState.Idle;
+                currentState = CreatureState.Idle;
             }
         }
     }
@@ -320,9 +320,9 @@ public class EnemyController : MonoBehaviour
         // This is called when the creature 'sees' the player
 
         // It is only relevant if the creature is not already in pursuit of the player
-        if (currentState == EnemyState.Idle || currentState == EnemyState.Patrol || currentState == EnemyState.Surveillance || currentState == EnemyState.Returning)
+        if (currentState == CreatureState.Idle || currentState == CreatureState.Patrol || currentState == CreatureState.Surveillance || currentState == CreatureState.Returning)
         {
-            // Check if the collider which has entered the enemy's vision belongs to the player        
+            // Check if the collider which has entered the creature's vision belongs to the player        
             if (other.gameObject.CompareTag("Player"))
             {
                 Debug.Log("Creature has seen player through TRIGGER COLLIDER");
@@ -344,7 +344,7 @@ public class EnemyController : MonoBehaviour
 
 
 
-public enum EnemyState
+public enum CreatureState
 {
     Idle,
     Patrol,
