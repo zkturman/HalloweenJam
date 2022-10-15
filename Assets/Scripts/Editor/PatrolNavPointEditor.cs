@@ -16,7 +16,7 @@ public class PatrolNavPointEditor : Editor
         Gizmos.color = currentNavPoint.sphereColor;
 
         // Set size of sphere to be drawn
-        float sphereSize = 0.25f;
+        float sphereSize = 0.1f;
 
         // Draw sphere for the PatrolNavPoint
         Gizmos.DrawSphere(currentNavPoint.transform.position, sphereSize);

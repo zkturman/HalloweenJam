@@ -12,6 +12,7 @@ public class CreatureController : MonoBehaviour
     float sightDistance = 3000f;   // How far the creature's 'line of sight' raycast extends
     float attackDistance = 1f;   // How close the creature needs to be to the player to trigger its attack.
     float attackRecoveryTime = 1f;   // How many seconds between an attack and returning to the chase
+    float surveillanceTime = 3f;   // How long the creature stays in surveillance mode before returning to its default state
 
     int currentPatrolNavID = -1;
     Vector3 startingPosition;
@@ -72,7 +73,8 @@ public class CreatureController : MonoBehaviour
                 }
             case CreatureState.Surveillance:
                 {
-                    Surveillance();
+                    // Do nothing here - the 'surveillance' action is a coroutine called when the creature first enters the 'attack' state
+                    // It's not designed to be called each frame.
                     break;
                 }
             case CreatureState.Returning:
@@ -155,6 +157,7 @@ public class CreatureController : MonoBehaviour
         if (Physics.Raycast(creatureLookPosition, rayDirection, out hit, sightDistance))
         {
             // Done as an if statement because this code will only run if the raycast hits something
+                //if (hit.rigidbody.gameObject.CompareTag("Player"))
             if (hit.transform.gameObject.CompareTag("Player"))
             {
                 // Creature can see player
@@ -196,7 +199,7 @@ public class CreatureController : MonoBehaviour
             // If the creature has reached its target, enter surveillance state
             if (HasReachedDestination())
             {
-                EnterSurveillanceState();
+                StartCoroutine(EnterSurveillanceState());
             }
         }
 
@@ -216,32 +219,34 @@ public class CreatureController : MonoBehaviour
         // Allow time for animation/attack
         yield return new WaitForSeconds(attackRecoveryTime);
 
-        
-
         // Then return to chase mode (which will test if the player is still close enough to attack again)
         EnterChaseMode();
     }
 
 
-    void EnterSurveillanceState()
+    IEnumerator EnterSurveillanceState()
     {
         currentState = CreatureState.Surveillance;
         
-        // Add waiting/looking around functionality here later, if there's time
+        float timer = 0f;
+        while (timer < surveillanceTime)
+        {
+            yield return null;
 
-        // For now, just return to its default location/behaviour
+            // *** Detect if creature has changed state ***
+            if (currentState != CreatureState.Surveillance)
+            {
+                // No longer in surveillance state, so end the coroutine without doing anything else
+                yield break;
+                Debug.Log("WARNING: Coroutine EnterSurveillanceState should have stopped, so this message shouldn't be seen!");
+            }
+            timer += Time.deltaTime;
+        }
+
+        // Once the surveillance timer runs out (without spotting the player), return to normal state
         ReturnToNormalState();
     }
 
-
-    void Surveillance()
-    {
-        // Code to be added later if there is time.
-
-        // This would be behaviour where the creature stands still for a while, looking around to try to spot the player.
-        
-        // Currently the code in EnterSurveillanceState() skips past this stage.
-    }
 
 
     void SetNextPatrolDestination()
