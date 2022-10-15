@@ -174,7 +174,7 @@ public class CreatureController : MonoBehaviour
             if (distanceToPlayer <= attackDistance)
             {
                 // If in range to attack then update state and attack on next frame
-                currentState = CreatureState.Attack;
+                StartCoroutine(Attack());
                 return;
             }
             else

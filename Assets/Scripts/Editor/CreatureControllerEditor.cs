@@ -35,6 +35,7 @@ public class CreatureControllerEditor : Editor
         if (currentCreature.currentState == CreatureState.Attack)
         {
             gizmoShape = "Cube";
+            gizmoSize = 1f;
             Gizmos.color = Color.red;
         }
 
