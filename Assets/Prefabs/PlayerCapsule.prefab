@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 4042918400770871321}
   - component: {fileID: 6142972049329990099}
   - component: {fileID: 4785965665267274939}
+  - component: {fileID: 8743538068666526177}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -413,6 +414,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Turning: 0
   TurnTimeout: 0.2
+--- !u!114 &8743538068666526177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc5803e62c492f46b8f0eb9492ed21f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalHealth: 3
+  secondsOfInvulnerability: 1
 --- !u!1001 &6602138720500825148
 PrefabInstance:
   m_ObjectHideFlags: 0
