@@ -25,6 +25,8 @@ public class HealthHandler : MonoBehaviour
 
     public void TakeHealthDamage()
     {
+        Debug.Log("HealthHander.TakeHealthDamage() has been called...");
+
         if (!takingDamage)
         {
             takingDamage = true;
