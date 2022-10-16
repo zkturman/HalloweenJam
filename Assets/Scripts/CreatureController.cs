@@ -10,11 +10,12 @@ public class CreatureController : MonoBehaviour
     public float patrolSpeed = 1f;
     public float chaseSpeed = 3f;
 
+    public AudioSource chaseSound;
     public AudioSource attackSound;
     
     float sightDistance = 3000f;   // How far the creature's 'line of sight' raycast extends
     float attackDistance = 1f;   // How close the creature needs to be to the player to trigger its attack.
-    float attackRecoveryTime = 1f;   // How many seconds between an attack and returning to the chase
+    float attackRecoveryTime = 2f;   // How many seconds between an attack and returning to the chase
     float surveillanceTime = 3f;   // How long the creature stays in surveillance mode before returning to its default state
     float stunnedTime = 4f;     // (Perhaps this should be passed through from player when they stun the creature....?)
 
@@ -125,6 +126,15 @@ public class CreatureController : MonoBehaviour
 
     void EnterChaseMode()
     {
+        // Only play chase sound effect if the creature isn't already in alert mode
+        if (currentState == CreatureState.Idle ||
+            currentState == CreatureState.Patrol ||
+            currentState == CreatureState.Returning)
+        {
+            chaseSound.Play();
+        }
+        
+        
         // Update state
         currentState = CreatureState.Chase;
 
@@ -136,6 +146,7 @@ public class CreatureController : MonoBehaviour
 
         // Set destination to player's current location
         navMeshAgent.destination = player.transform.position;
+
 
         // ??? Animation change here???
     }
@@ -156,13 +167,17 @@ public class CreatureController : MonoBehaviour
 
         RaycastHit hit;
         Vector3 rayDirection = playerLookPosition - creatureLookPosition;
+        Ray ray = new Ray(creatureLookPosition, rayDirection);
+        
         distanceToPlayer = rayDirection.magnitude;
 
-        if (Physics.Raycast(creatureLookPosition, rayDirection, out hit, sightDistance))
+
+        if (Physics.Raycast(ray, out hit, sightDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+        //if (Physics.Raycast(ray, out hit, 1, QueryTriggerInteraction.Ignore))
+        //if (Physics.Raycast(creatureLookPosition, rayDirection, out hit, sightDistance))
         {
             // Done as an if statement because this code will only run if the raycast hits something
-                //if (hit.rigidbody.gameObject.CompareTag("Player"))
-            if (hit.transform == player.transform)
+            if (hit.transform.gameObject.layer == 8)    // (8 is the number of the Character layer)
             {
                 // Creature can see player
                 canSeePlayer = true;
@@ -227,6 +242,7 @@ public class CreatureController : MonoBehaviour
 
         // Then return to chase mode (which will test if the player is still close enough to attack again)
         EnterChaseMode();
+
     }
 
 
@@ -336,7 +352,7 @@ public class CreatureController : MonoBehaviour
         if (currentState == CreatureState.Idle || currentState == CreatureState.Patrol || currentState == CreatureState.Surveillance || currentState == CreatureState.Returning)
         {
             // Check if the collider which has entered the creature's vision belongs to the player        
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.layer == 8)   // (8 is the number of the Character layer)
             {
                 Debug.Log("Creature has seen player through TRIGGER COLLIDER");
                 player = other.gameObject;
