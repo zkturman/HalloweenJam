@@ -286,13 +286,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghoul (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1309486516299566, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
+      propertyPath: m_TagString
+      value: JournalSubject
+      objectReference: {fileID: 0}
     - target: {fileID: 4467757482891228, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4467757482891228, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.3824134
+      value: 5.84
       objectReference: {fileID: 0}
     - target: {fileID: 4467757482891228, guid: 227ee07e9e5b7914ba8fbb8f430be9a5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -725,18 +729,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01311b99708e82145a709f95952e18b6, type: 3}
---- !u!114 &301112655 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3634328238834409236, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-    type: 3}
-  m_PrefabInstance: {fileID: 5393215579111688471}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a66124c0cf37845acaa1ee391bc448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &320459389
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65acad5d190bd5744864c44bd11ced0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartHealthTemplate: {fileID: 9197481963319205126, guid: f0b994cf98b935641a81e7feff315fdd,
+    type: 3}
 --- !u!1001 &364944261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1168,6 +1162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 481613626}
+  - component: {fileID: 481613627}
   m_Layer: 0
   m_Name: PlayerStatUIManager
   m_TagString: Untagged
@@ -1190,6 +1185,18 @@ Transform:
   m_Father: {fileID: 350578547}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481613627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481613625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751c044f206d27f4bb4370c40c60025c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &506216076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1492,7 +1499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &599770184
 Transform:
   m_ObjectHideFlags: 0
@@ -2177,12 +2184,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 752577559}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &758442624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+    type: 3}
+  m_PrefabInstance: {fileID: 5393215579111688471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &775214721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 36f258ea05b6e8644ae91a5b98eba017,
     type: 3}
   m_PrefabInstance: {fileID: 1529124401}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &799164985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1008660550641252, guid: 227ee07e9e5b7914ba8fbb8f430be9a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 154435243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &799164987
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799164985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &799164988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799164985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a869b30ea3006a74cbb246f8635af660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &804826564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,6 +3556,7 @@ MonoBehaviour:
   passengerInfoTemplate: {fileID: 9197481963319205126, guid: 620c03a521fa66b40af26529d2a7c374,
     type: 3}
   passengersPerPage: 3
+  renderProjector: {fileID: 8600000, guid: 3a265fbc82e36904893bd4c387befc15, type: 2}
 --- !u!4 &1211298915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 420012, guid: 01311b99708e82145a709f95952e18b6,
@@ -3813,6 +3859,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24579a71f306fa349abdad24a69e4d08, type: 3}
+--- !u!1 &1386678768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1309486516299566, guid: 227ee07e9e5b7914ba8fbb8f430be9a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 154435243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1386678771
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386678768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 4
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: -1}
+--- !u!114 &1386678772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386678768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2129be95ecf640499f888cc3e98e682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 5
+  ColorTag: {r: 0, g: 0, b: 0, a: 0}
+--- !u!54 &1386678776
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386678768}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1402159131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4415,7 +4511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1520308771
 Transform:
   m_ObjectHideFlags: 0
@@ -4448,6 +4544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notepad: {fileID: 190340725}
   journalUI: {fileID: 1170036841}
+  journalProjector: {fileID: 599770183}
   playerHud: {fileID: 41975504}
 --- !u!1001 &1529124401
 PrefabInstance:
@@ -4677,26 +4774,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1694593551}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1722509417 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-    type: 3}
-  m_PrefabInstance: {fileID: 5393215579111688471}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1722509422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722509417}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1fda4ffa20ef804c8300c45661f6da3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skullBehaviour: {fileID: 301112655}
-  controller: {fileID: 0}
 --- !u!1 &1749979698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,7 +4837,7 @@ MonoBehaviour:
   - desc3
   - desc4
   - desc5
-  - desc6
+  - It's the lady who nevers stops talking about her plans with her husband.
   - desc7
   - desc8
   - desc9
@@ -4768,18 +4845,18 @@ MonoBehaviour:
   - desc11
   - desc12
   unomosDescriptions:
-  - hint1
-  - hint2
-  - hint3
-  - hint4
-  - hint5
-  - hint6
-  - hint7
-  - hint8
-  - hint9
-  - hint10
-  - hint11
-  - hint12
+  - A hamster of a human
+  - Cueball
+  - Would fit in well down here
+  - Can only think of green
+  - Needs long socks
+  - Dancers are the tastiest
+  - I give them nightmares
+  - I like them more than you
+  - Could never get to come down here
+  - More cat than human
+  - Not actually married
+  - My friend possessed her
 --- !u!1001 &1751332534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5518,9 +5595,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb458ace6cbf345a73312ac628cd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speakerName: Unomos
   dialogueLines:
-  - Hello.
-  - I am Unomos.
+  - 
+  preSkullLines:
+  - Ah, you're finally awake.
+  - Do you know where you are?
+  - Hell... the Underworld... whichever term you choose to use, that's where you
+    are now.
+  - Unlike your fellow passengers you seem to have somehow survived, yet you're trapped
+    in this realm.
+  - Maybe I could offer you a way out... in exchange for something.
+  - In this cavern lies a magical object carved by my sister...
+  - Made from the spirits of men. If you find this tool, I will help you.
+  postSkullLines:
+  - I see you've made the right decision.
+  - Sometimes immoral actions lead to the right outcome that is.
+  - Now that you have the skull, you can finish my bidding.
+  - My sister has hidden shards within the Passengers, and I need them.
+  - Why is not something I'll explain to the likes of you. However, collect the shards,
+    and I will provide you with a way out of this realm.
+  - However, I cannot use the Effulgent Skull you now possess, which is needed to
+    separate the shards from their souls.
+  - 'The shards can be found by finding the Passengers with these descriptions:'
+  hintLines: []
+  postShardsLines:
+  - Looks like you've done it.
+  - Gathered the shards and damned the souls of the Passengers on the train.
+  - I'll hold up my end of the bargain.
+  - You'll be free to enter your realm once again, though a shard of your morality
+    will linger behind.
+  - Good bye my minion...
 --- !u!4 &1971723868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d460f9d98afa7634199641174bd537b3,
@@ -5670,7 +5775,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5393215579111688471}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 758442624}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -5804,6 +5909,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2094565358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094565359}
+  - component: {fileID: 2094565360}
+  m_Layer: 0
+  m_Name: JournalUpdateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2094565359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094565358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 350578547}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094565360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094565358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b1fa3574b7d4141b744d20fd56e53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainGameUIController: {fileID: 350578549}
+  displayTimeInSeconds: 3
 --- !u!4 &2106177710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ad0f936da1b94df47a67bc558a9ccff0,
@@ -6053,7 +6204,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5393215579111688471}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 758442624}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e087ecce43ebbff45a1b360637807d93, type: 3}
@@ -6065,18 +6216,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5393215579111688471}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &135756641613574984 stripped
+--- !u!114 &135756641613574988
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4042918400770871321, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-    type: 3}
-  m_PrefabInstance: {fileID: 5393215579111688471}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 758442624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3105feb910f2540a51622d24cf4a6c, type: 3}
+  m_Script: {fileID: 11500000, guid: edc5803e62c492f46b8f0eb9492ed21f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TotalHealth: 3
+  secondsOfInvulnerability: 1
 --- !u!1 &2114283753834967212
 GameObject:
   m_ObjectHideFlags: 0
@@ -6235,16 +6388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1279388641079743550, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279388641079743550, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-        type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 135756641613574984}
     - target: {fileID: 1279388641079743550, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: interactionMaxDistance

@@ -11,11 +11,19 @@ public class SkullWeaponBehaviour : MonoBehaviour
     private HolyLightBurstBehaviour lightBurst;
     [SerializeField]
     private float attackRadius;
+    private PlayerStatUIHandler statsHandler;
+
+    private void Awake()
+    {
+        statsHandler = FindObjectOfType<PlayerStatUIHandler>(true);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         remainingCharges = maxCharges;
+        statsHandler.EnableSkull();
+        statsHandler.SetNumberOfSkullCharges(maxCharges);
     }
 
     // Update is called once per frame
@@ -30,6 +38,7 @@ public class SkullWeaponBehaviour : MonoBehaviour
         {
             lightBurst.EmitLight();
             remainingCharges--;
+            statsHandler.SetNumberOfSkullCharges(remainingCharges);
         }
     }
 
@@ -45,6 +54,7 @@ public class SkullWeaponBehaviour : MonoBehaviour
     public void Recharge()
     {
         remainingCharges = maxCharges;
+        statsHandler.SetNumberOfSkullCharges(remainingCharges);
     }
 
     private void OnDrawGizmosSelected()

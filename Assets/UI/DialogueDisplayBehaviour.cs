@@ -11,26 +11,23 @@ public class DialogueDisplayBehaviour : MonoBehaviour
     private string dialogueEntryMessasge;
     private string[] dialogueLines;
     private int currentLine = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private bool isActive = false;
 
     public void DisplayDialogueEntryPoint()
     {
+        mainGameUIController.DisplayDialogueBox(true);
         mainGameUIController.AddMessage(dialogueEntryMessasge);
+        isActive = true;
     }
 
     public void AddStepThroughDialogue(string[] dialogueLines)
     {
         this.dialogueLines = dialogueLines;
+    }
+
+    public void AddSpeaker(string name)
+    {
+        mainGameUIController.AddDialogueSpeaker(name);
     }
 
     public void DisplayNextLine()
@@ -39,6 +36,12 @@ public class DialogueDisplayBehaviour : MonoBehaviour
         currentLine++;
         bool isFinished = IsDialogueFinished();
         mainGameUIController.AddDialogue(nextLine, isFinished);
+        mainGameUIController.SetEndOfDialogue(isLastLine());
+    }
+
+    private bool isLastLine()
+    {
+        return currentLine == dialogueLines.Length; 
     }
 
     public bool IsDialogueFinished()
@@ -59,11 +62,23 @@ public class DialogueDisplayBehaviour : MonoBehaviour
     {
 
     }
-
-    public void ClearDialogue()
+    
+    public void ResetDialogue()
     {
-        Debug.Log("Cleared dialogue");
         mainGameUIController.AddMessage("");
+        mainGameUIController.SetEndOfDialogue(false);
         currentLine = 0;
+    }
+
+    public void ExitDialogue()
+    {
+        if (isActive)
+        {
+            Debug.Log("Cleared dialogue");
+            mainGameUIController.DisplayDialogueBox(false);
+            ResetDialogue();
+            isActive = false;
+            mainGameUIController.AddDialogueSpeaker("");
+        }
     }
 }

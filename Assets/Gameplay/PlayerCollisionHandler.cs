@@ -7,10 +7,14 @@ public class PlayerCollisionHandler : MonoBehaviour
     private SkullWeaponBehaviour skullBehaviour;
     [SerializeField]
     private PlayerActionState controller;
+    private JournalDisplayBehaviour journalDisplayBehaviour;
+    private JournalBehaviour playerJournal;
 
     // Start is called before the first frame update
     void Start()
     {
+        journalDisplayBehaviour = FindObjectOfType<JournalDisplayBehaviour>();
+        playerJournal = FindObjectOfType<JournalBehaviour>(true);
     }
 
     // Update is called once per frame
@@ -47,9 +51,21 @@ public class PlayerCollisionHandler : MonoBehaviour
         }
         if (other.tag == "Interactable")
         {
-            Debug.Log("Should enable interaction.");
             controller.CanInteract = true;
             other.gameObject.GetComponent<DialogueEmitter>().EmitText();
+        }
+        if (other.tag == "JournalSubject")
+        {
+            JournalSubject subject = other.GetComponent<JournalSubject>();
+            if (subject != null)
+            {
+                int id = subject.ID;
+                if (!playerJournal.IsPassengerFound(id))
+                {
+                    journalDisplayBehaviour.IndicateUpdatedEntry(id);
+                    playerJournal.AddFoundPassenger(id);
+                }
+            }
         }
     }
 
@@ -57,7 +73,6 @@ public class PlayerCollisionHandler : MonoBehaviour
     {
         if (other.tag == "Interactable")
         {
-            Debug.Log("Should disable interaction");
             controller.CanInteract = false;
         }
     }

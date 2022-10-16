@@ -9,6 +9,7 @@ TagManager:
   - EffulgentSkull
   - Interactable
   - Enemy
+  - JournalSubject
   layers:
   - Default
   - TransparentFX

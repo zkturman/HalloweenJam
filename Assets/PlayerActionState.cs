@@ -166,7 +166,7 @@ public class PlayerActionState : MonoBehaviour, ObjectState
 		}
 		if (!CanInteract)
 		{
-			_dialogueDisplay.ClearDialogue();
+			_dialogueDisplay.ExitDialogue();
 			_input.interact = false;
 		}
 	}

@@ -36,7 +36,7 @@ public class PlayerDialogueState : MonoBehaviour, ObjectState
             {
                 _input.interact = false;
                 nextState = _actionState;
-                _dialogueDisplay.ClearDialogue();
+                _dialogueDisplay.ResetDialogue();
             }
             else
             {

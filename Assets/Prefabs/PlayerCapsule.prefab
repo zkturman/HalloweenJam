@@ -347,13 +347,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1fda4ffa20ef804c8300c45661f6da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skullBehaviour: {fileID: 3634328238834409236}
-  controller: {fileID: 0}
+  controller: {fileID: 4042918400770871321}
 --- !u!114 &4042918400770871321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8ca10fb79ec2a488b8fb7c2c01807e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Turning: 0
+  TurnTimeout: 0.2
 --- !u!1001 &6602138720500825148
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,8 +4,8 @@
             <ui:VisualElement name="LeftIcon" style="justify-content: center; align-items: center; background-image: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-4528830608231651361&amp;guid=25093f909d572634dbaac10a77037811&amp;type=3#arrow-left@2x&apos;); width: 64px; height: 64px;" />
         </ui:VisualElement>
         <ui:VisualElement name="JournalPages" style="background-color: rgba(255, 255, 255, 0); width: 80%; height: 80%; flex-direction: row; justify-content: space-between;">
-            <ui:VisualElement name="LeftPage" style="width: 50%; height: 100%; background-color: rgba(102, 218, 255, 0); justify-content: space-around;" />
-            <ui:VisualElement name="RightPage" style="width: 50%; height: 100%; background-color: rgba(255, 166, 0, 0); justify-content: space-around; align-items: center;" />
+            <ui:VisualElement name="LeftPage" style="width: 285px; height: 100%; background-color: rgba(42, 141, 173, 0); justify-content: space-around; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-right: 27px;" />
+            <ui:VisualElement name="RightPage" style="width: 285px; height: 100%; background-color: rgba(255, 166, 0, 0); justify-content: space-around; align-items: center; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 27px;" />
         </ui:VisualElement>
         <ui:VisualElement name="TurnPageRight" style="width: 10%; justify-content: center; align-items: center;">
             <ui:VisualElement name="RightIcon" style="justify-content: center; align-items: center; background-image: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=25093f909d572634dbaac10a77037811&amp;type=3#arrow-right@2x&apos;); width: 64px; height: 64px;" />

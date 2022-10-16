@@ -9,6 +9,8 @@ public class JournalBehaviour : MonoBehaviour
     private Animator notepadAnimator;
     [SerializeField]
     private JournalUpdateDispalyBehaviour journalUI;
+    [SerializeField]
+    private GameObject journalProjector;
     private float openDuration = 1.5f;
     private float closeDuration = 1.5f;
     [SerializeField]
@@ -41,6 +43,7 @@ public class JournalBehaviour : MonoBehaviour
         notepadAnimator.SetTrigger("Open");
         playerHud.SetActive(false);
         yield return new WaitForSeconds(openDuration);
+        journalProjector.SetActive(true);
     }
 
     public void CloseNotepad()
@@ -51,8 +54,35 @@ public class JournalBehaviour : MonoBehaviour
     private IEnumerator closeNotepadRoutine()
     {
         notepadAnimator.SetTrigger("Close");
+        journalProjector.SetActive(false);
         yield return new WaitForSeconds(closeDuration);
-        playerHud?.SetActive(true);
+        playerHud.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    public void TurnRightPage()
+    {
+        if (journalUI.CanFlipRight())
+        {
+            journalUI.FlipPageRight();
+        }
+    }
+
+    public void TurnLeftPage()
+    {
+        if (journalUI.CanFlipLeft())
+        {
+            journalUI.FlipPageLeft();
+        }
+    }
+
+    public bool IsPassengerFound(int passengerId)
+    {
+        return journalUI.IsPassengerFound(passengerId);
+    }
+
+    public void AddFoundPassenger(int passengerId)
+    {
+        journalUI.FlagPassengerAsFound(passengerId);
     }
 }
