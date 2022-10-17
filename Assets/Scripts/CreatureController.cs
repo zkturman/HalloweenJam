@@ -27,7 +27,7 @@ public class CreatureController : MonoBehaviour
     CreatureState defaultState;
 
     GameObject player;
-    
+    HealthHandler playerHealthHandler;
     
 
 
@@ -235,6 +235,16 @@ public class CreatureController : MonoBehaviour
         // Temporary code
         Debug.Log("ATTTAAAAACKKK!!!!");
         attackSound.Play();
+
+        // If this is the first attack on the player, get reference to the player's HealthHandler component
+        if (playerHealthHandler == null)
+        {
+            Debug.Log("Acquiring reference to player HealthHandler");
+            playerHealthHandler = player.GetComponentInParent<HealthHandler>();
+        }
+
+        // Damage the player
+        playerHealthHandler.TakeHealthDamage();
 
 
         // Allow time for animation/attack
