@@ -11,7 +11,7 @@ public class StartScreenUIController : MonoBehaviour
     private void OnEnable()
     {
         rootVisualElement = GetComponent<UIDocument>().rootVisualElement;
-        startButton = new SceneButton("StartButton", "MainGame").GenerateButton(rootVisualElement);
+        startButton = new SceneButton("StartButton", "BackgroundStory").GenerateButton(rootVisualElement);
         settingsButton = new SceneButton("SettingsButton", "Settings").GenerateButton(rootVisualElement);
         quitButton = new QuitButton("QuitButton").GenerateButton(rootVisualElement);
     }
