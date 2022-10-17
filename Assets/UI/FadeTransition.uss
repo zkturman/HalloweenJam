@@ -1,0 +1,3 @@
+Label.FadeTransition {
+    opacity: 0;
+}
