@@ -52,10 +52,19 @@ public class SkullWeaponBehaviour : MonoBehaviour
             {
                 if (affectedObjects[i].tag == "Enemy")
                 {
-                    Debug.Log("Hit enemy with light!");
+                    float ejectAngle = generateContactAngle(affectedObjects[i].gameObject);
+                    affectedObjects[i].GetComponent<NetherShardGenerator>().GenerateNetherShard(ejectAngle);
                 }
             }
         }
+    }
+
+    private float generateContactAngle(GameObject otherObject)
+    {
+        Vector2 recenteredOtherPosition = new Vector2(otherObject.transform.position.x - transform.position.x
+                , otherObject.transform.position.z - transform.position.z);
+        float contactAngle = Mathf.Atan2(recenteredOtherPosition.x, recenteredOtherPosition.y);
+        return contactAngle;
     }
 
     public void Recharge()

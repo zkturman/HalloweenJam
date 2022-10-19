@@ -23,7 +23,7 @@ public class JournalBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("test");
     }
 
     // Update is called once per frame
@@ -84,5 +84,10 @@ public class JournalBehaviour : MonoBehaviour
     public void AddFoundPassenger(int passengerId)
     {
         journalUI.FlagPassengerAsFound(passengerId);
+    }
+
+    public void AddPassengerColorTag(int passengerId, Color colorTag)
+    {
+        journalUI.AddFoundPassengerColor(passengerId, colorTag);
     }
 }

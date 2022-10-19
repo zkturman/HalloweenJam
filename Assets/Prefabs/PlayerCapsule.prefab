@@ -471,6 +471,11 @@ PrefabInstance:
       propertyPath: maxCharges
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7633663391238251304, guid: 367e3974a5a510a45a80319615117d95,
+        type: 3}
+      propertyPath: attackRadius
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8422349570680377018, guid: 367e3974a5a510a45a80319615117d95,
         type: 3}
       propertyPath: m_Enabled
