@@ -56,10 +56,6 @@ public class PlayerDialogueState : MonoBehaviour, ObjectState
         {
             _gameStateController.SetReceivedHintsState();
         }
-        else if (_gameStateController.InReceivedHintsState())
-        {
-            //check all shards --> hasallshardsstate
-        }
         else if (_gameStateController.InHasAllShardsState())
         {
             _gameStateController.SetGameFinishedState();

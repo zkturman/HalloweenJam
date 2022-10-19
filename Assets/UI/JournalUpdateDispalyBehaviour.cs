@@ -80,7 +80,7 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
         }
         else
         {
-            int setNumber = currentPageSet + 1;
+            int setNumber = 2 * currentPageSet;
             buildPassengerPage(leftPageElement, setNumber);
         }
     }
@@ -95,7 +95,7 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
         }
         else
         {
-            setNumber = currentPageSet + 2;
+            setNumber = 2 * currentPageSet + 1;
             buildPassengerPage(rightPageElement, setNumber);
         }
     }
@@ -147,6 +147,10 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
     {
         int startingIndex = (setNumberFromOne - 1) * passengersPerPage;
         int endingIndex = startingIndex + passengersPerPage;
+        if (endingIndex > MonsterHandler.NumberOfPassengers)
+        {
+            endingIndex = MonsterHandler.NumberOfPassengers;
+        }
         for (int i = startingIndex; i < endingIndex; i++)
         {
             VisualElement description = passengerInfoTemplate.Instantiate();
