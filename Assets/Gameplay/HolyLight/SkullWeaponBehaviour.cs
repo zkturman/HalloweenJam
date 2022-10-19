@@ -39,6 +39,7 @@ public class SkullWeaponBehaviour : MonoBehaviour
             lightBurst.EmitLight();
             remainingCharges--;
             statsHandler.SetNumberOfSkullCharges(remainingCharges);
+            affectMonsters();
         }
     }
 
@@ -47,7 +48,13 @@ public class SkullWeaponBehaviour : MonoBehaviour
         Collider[] affectedObjects = Physics.OverlapSphere(transform.position, attackRadius, Physics.AllLayers, QueryTriggerInteraction.Collide);
         if (affectedObjects.Length > 0)
         {
-
+            for (int i = 0; i < affectedObjects.Length; i++)
+            {
+                if (affectedObjects[i].tag == "Enemy")
+                {
+                    Debug.Log("Hit enemy with light!");
+                }
+            }
         }
     }
 
