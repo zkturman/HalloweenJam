@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 6142972049329990099}
   - component: {fileID: 4785965665267274939}
   - component: {fileID: 8743538068666526177}
+  - component: {fileID: 5210021249193302495}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -353,8 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1fda4ffa20ef804c8300c45661f6da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skullBehaviour: {fileID: 3634328238834409236}
-  controller: {fileID: 4042918400770871321}
 --- !u!114 &4042918400770871321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +427,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TotalHealth: 3
   secondsOfInvulnerability: 1
+--- !u!114 &5210021249193302495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f400f4269f7e742b0e1b1ceb46a296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6602138720500825148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -558,18 +569,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6602138720500825148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3634328238834409236 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7633663391238251304, guid: 367e3974a5a510a45a80319615117d95,
-    type: 3}
-  m_PrefabInstance: {fileID: 6602138720500825148}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a66124c0cf37845acaa1ee391bc448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7821327848280799111 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3969204072223345595, guid: 367e3974a5a510a45a80319615117d95,

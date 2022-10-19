@@ -3,32 +3,21 @@ using StarterAssets;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
-    [SerializeField]
     private SkullWeaponBehaviour skullBehaviour;
-    [SerializeField]
     private PlayerActionState controller;
     private JournalDisplayBehaviour journalDisplayBehaviour;
     private JournalBehaviour playerJournal;
-
+    private GameStateController gameStateController;
+    private ShardCollectionHandler shardCollectionHandler;
     // Start is called before the first frame update
     void Start()
     {
         journalDisplayBehaviour = FindObjectOfType<JournalDisplayBehaviour>();
         playerJournal = FindObjectOfType<JournalBehaviour>(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "NetherShard")
-        {
-            Debug.Log("Collect Nether Shard!");
-        }
-
+        gameStateController = FindObjectOfType<GameStateController>();
+        controller = GetComponent<PlayerActionState>();
+        skullBehaviour = GetComponentInChildren<SkullWeaponBehaviour>(true);
+        shardCollectionHandler = GetComponent<ShardCollectionHandler>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +36,7 @@ public class PlayerCollisionHandler : MonoBehaviour
                 skullBehaviour.gameObject.SetActive(true);
                 skullBehaviour.enabled = true;
                 Destroy(other.gameObject);
+                gameStateController.SetRetrievedSkullState();
             }
         }
         if (other.tag == "Interactable")
@@ -54,7 +44,7 @@ public class PlayerCollisionHandler : MonoBehaviour
             controller.CanInteract = true;
             other.gameObject.GetComponent<DialogueEmitter>().EmitText();
         }
-        if (other.tag == "JournalSubject")
+        if (other.tag == "Enemy")
         {
             JournalSubject subject = other.GetComponent<JournalSubject>();
             if (subject != null)
@@ -66,6 +56,11 @@ public class PlayerCollisionHandler : MonoBehaviour
                     playerJournal.AddFoundPassenger(id);
                 }
             }
+        }
+        if (other.tag == "NetherShard")
+        {
+            shardCollectionHandler.IncrementShards();
+            Destroy(other.gameObject);
         }
     }
 

@@ -17,14 +17,14 @@ public class DialogueEmitter : MonoBehaviour, TextEmitter
     [SerializeField]
     private string[] postShardsLines;
     private DialogueDisplayBehaviour dialogueManager;
-    private SkullWeaponBehaviour playerSkull;
     private MonsterHandler monsterHandler;
+    private GameStateController gameStateController;
 
     private void Awake()
     {
         dialogueManager = FindObjectOfType<DialogueDisplayBehaviour>();
         monsterHandler = FindObjectOfType<MonsterHandler>();
-        playerSkull = FindObjectOfType<SkullWeaponBehaviour>(true);
+        gameStateController = FindObjectOfType<GameStateController>();
     }
 
     public void EmitText()
@@ -36,6 +36,43 @@ public class DialogueEmitter : MonoBehaviour, TextEmitter
 
     private string[] generateDialogueLines()
     {
-        return new string[0];
+        string[] lines;
+        if (gameStateController.InRetrievedSkullState())
+        {
+            lines = generateHintLines(postSkullLines);
+        }
+        else if (gameStateController.InReceivedHintsState())
+        {
+            lines = generateHintLines(hintLines);
+        }
+        else if (gameStateController.InHasAllShardsState())
+        {
+            lines = postShardsLines;
+        }
+        else
+        {
+            lines = preSkullLines;
+        }
+        return lines;
+    }
+
+    private string[] generateHintLines(string[] lines)
+    {
+        List<string> hintText;
+        if (lines == null)
+        {
+            hintText = new List<string>();
+        }
+        else
+        {
+            hintText = new List<string>(lines);
+        }
+
+        for (int i = 0; i < MonsterHandler.NumberOfShards; i++)
+        {
+            hintText.Add(monsterHandler.GetHintFromIndex(i));
+        }
+
+        return hintText.ToArray();
     }
 }
