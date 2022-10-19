@@ -17,6 +17,7 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
     private VisualElement rightTurnIcon;
     private MonsterHandler monsterHandler;
     private bool[] foundPassengers = new bool[MonsterHandler.NumberOfPassengers];
+    private Color[] passengerColors = new Color[MonsterHandler.NumberOfPassengers];
     private const string MISSING_PASSENGER_TEXT = "???";
     private const string PASSENGER_ID_PREFIX = "No. ";
     [SerializeField]
@@ -28,10 +29,6 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
     private void Awake()
     {
         monsterHandler = FindObjectOfType<MonsterHandler>();
-        //for (int i = 0; i < foundPassengers.Length; i++)
-        //{
-        //    foundPassengers[i] = false;
-        //}
     }
 
     private void OnEnable()
@@ -163,9 +160,11 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
         Label passengerIdLabel = descriptionElement.Q<Label>("PassengerId");
         passengerIdLabel.text = PASSENGER_ID_PREFIX + index;
         Label descriptionLabel = descriptionElement.Q<Label>("InfoText");
+        VisualElement passengeIdentifier = descriptionElement.Q<VisualElement>("VisualIdentifier");
         if (foundPassengers[index])
         {
             descriptionLabel.text = monsterHandler.GetDescriptionFromMonsterId(index);
+            passengeIdentifier.style.backgroundColor = passengerColors[index];
         }
         else
         {
@@ -204,5 +203,10 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
     public void FlagPassengerAsFound(int passengerId)
     {
         foundPassengers[passengerId] = true;
+    }
+
+    public void AddFoundPassengerColor(int passengerId, Color colorTag)
+    {
+        passengerColors[passengerId] = colorTag;
     }
 }

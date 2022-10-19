@@ -50,4 +50,17 @@ public class MonsterHandler : MonoBehaviour
         string hintValue = unomosDescriptions[monsterId];
         return hintValue;
     }
+
+    public bool IsShardMonster(int monsterId)
+    {
+        bool hasShard = false;
+        for (int i = 0; i < shardPasssengers.Length; i++)
+        {
+            if (shardPasssengers[i] == monsterId)
+            {
+                hasShard = true;
+            }
+        }
+        return hasShard;
+    }
 }

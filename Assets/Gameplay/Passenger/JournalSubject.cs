@@ -10,4 +10,16 @@ public class JournalSubject : MonoBehaviour
 
     [Tooltip("The Colour is used to help identify the monster with the player's journal. Must be unique.")]
     public Color ColorTag;
+
+    private RingColourHandler colourHandler;
+
+    private void Awake()
+    {
+        colourHandler = GetComponentInChildren<RingColourHandler>(true);
+    }
+    public void ActivateColorIdentifier()
+    {
+        colourHandler.UpdateRingColor(ColorTag);
+        colourHandler.gameObject.SetActive(true);
+    }
 }

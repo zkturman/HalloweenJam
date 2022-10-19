@@ -50,10 +50,13 @@ public class PlayerCollisionHandler : MonoBehaviour
             if (subject != null)
             {
                 int id = subject.ID;
+                Color identifier = subject.ColorTag;
                 if (!playerJournal.IsPassengerFound(id))
                 {
                     journalDisplayBehaviour.IndicateUpdatedEntry(id);
                     playerJournal.AddFoundPassenger(id);
+                    playerJournal.AddPassengerColorTag(id, identifier);
+                    subject.ActivateColorIdentifier();
                 }
             }
         }
