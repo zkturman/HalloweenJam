@@ -28,25 +28,39 @@ public class CreatureController : MonoBehaviour
 
     GameObject player;
     HealthHandler playerHealthHandler;
+    private Animator monsterAnimator;
     
 
 
     void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        
+        monsterAnimator = GetComponentInChildren<Animator>();
         // Record the start position (to return to if the enemy chases the player)
         startingPosition = gameObject.transform.position;
 
         // If no patrol nav points have been set in the inspector then the creature is idle (just stands where it is)
-        if (patrolNavPoints == null) {
+        if (patrolNavPoints == null || patrolNavPoints.Length < 1)
+        {
             defaultState = CreatureState.Idle;
             currentState = CreatureState.Idle;
-        } else
+            patrolNavPoints = new PatrolNavPoint[1];
+            GameObject defaultNavPoint = Instantiate(gameObject, transform.position, Quaternion.identity);
+            defaultNavPoint.AddComponent<PatrolNavPoint>();
+            patrolNavPoints[0] = defaultNavPoint.GetComponent<PatrolNavPoint>();
+            StartCoroutine(EnterSurveillanceState());
+        }
+        else if (patrolNavPoints.Length == 1)
+        {
+            defaultState = CreatureState.Idle;
+            currentState = CreatureState.Idle;
+            StartCoroutine(EnterSurveillanceState());
+        }
+        else
         {
             defaultState = CreatureState.Patrol;
             currentState = CreatureState.Patrol;
-            SetNextPatrolDestination();
+            EnterPatrolMode();
         }
     }
 
@@ -57,7 +71,6 @@ public class CreatureController : MonoBehaviour
         {
             case CreatureState.Idle:
                 {
-                    // Do nothing, currently...
                     break;
                 }
             case CreatureState.Patrol:
@@ -91,6 +104,12 @@ public class CreatureController : MonoBehaviour
         }
     }
 
+    void EnterIdleMode()
+    {
+        currentState = CreatureState.Idle;
+        navMeshAgent.isStopped = true;
+        monsterAnimator.SetTrigger("Idle");
+    }
 
     void EnterPatrolMode()
     {
@@ -107,7 +126,7 @@ public class CreatureController : MonoBehaviour
         SetNextPatrolDestination();
 
         // ??? Animation change here???
-
+        monsterAnimator.SetTrigger("Walk");
     }
 
     void Patrol()
@@ -149,6 +168,7 @@ public class CreatureController : MonoBehaviour
 
 
         // ??? Animation change here???
+        monsterAnimator.SetTrigger("Run");
     }
 
 
@@ -243,12 +263,11 @@ public class CreatureController : MonoBehaviour
             playerHealthHandler = player.GetComponentInParent<HealthHandler>();
         }
 
-        // Damage the player
-        playerHealthHandler.TakeHealthDamage();
-
-
+        monsterAnimator.SetTrigger("Attack");
         // Allow time for animation/attack
         yield return new WaitForSeconds(attackRecoveryTime);
+        // Damage the player
+        playerHealthHandler.TakeHealthDamage();
 
         // Then return to chase mode (which will test if the player is still close enough to attack again)
         EnterChaseMode();
@@ -347,7 +366,7 @@ public class CreatureController : MonoBehaviour
             {
                 // Assume default state is idle
                 // For now just leave the creature standing still - but maybe this should be linked to surveillance type behaviour later.
-                currentState = CreatureState.Idle;
+                EnterIdleMode();
             }
         }
     }
@@ -378,7 +397,6 @@ public class CreatureController : MonoBehaviour
         // The stunned state is a coroutine, which could be awkward to call from other classes (?) so this public method
         // just does it internally...
         StartCoroutine(EnterStunnedMode());
-
     }
     
 
@@ -387,9 +405,8 @@ public class CreatureController : MonoBehaviour
         // Freeze creature.
         navMeshAgent.isStopped = true;
 
-        // *** IF CARRYING CRYSTAL, RELEASE IT HERE ****
-
         // *** Any other 'stunned' AV effects to be put here
+        monsterAnimator.SetTrigger("Stun");
 
         // Wait in stunned state
         float timer = 0f;
