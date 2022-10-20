@@ -44,7 +44,7 @@ public class PlayerCollisionHandler : MonoBehaviour
             controller.CanInteract = true;
             other.gameObject.GetComponent<DialogueEmitter>().EmitText();
         }
-        if (other.tag == "Enemy")
+        if (other.tag == "JournalSubject")
         {
             JournalSubject subject = other.GetComponent<JournalSubject>();
             if (subject != null)

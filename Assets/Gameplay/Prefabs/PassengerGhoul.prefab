@@ -1,5 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1405327746275653163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6520452378072956308}
+  - component: {fileID: 1091081849024266504}
+  - component: {fileID: 2260158844851630876}
+  - component: {fileID: 3942593999870136325}
+  m_Layer: 0
+  m_Name: JournalSubject
+  m_TagString: JournalSubject
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6520452378072956308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405327746275653163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8320435726927319903}
+  m_Father: {fileID: 8838786019890915756}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1091081849024266504
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405327746275653163}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 1, z: -1.5}
+--- !u!114 &2260158844851630876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405327746275653163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2129be95ecf640499f888cc3e98e682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+  ColorTag: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &3942593999870136325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405327746275653163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c29348e4c92bc74aaa552302f9a6fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propulsionForce: 15
+  heightOffset: 1
 --- !u!1 &6381829751116611982
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,8 +468,6 @@ GameObject:
   - component: {fileID: 8838786019890915759}
   - component: {fileID: 8838786019890915758}
   - component: {fileID: 8838786019890915757}
-  - component: {fileID: 3877452830462419429}
-  - component: {fileID: 5388966372566317996}
   m_Layer: 0
   m_Name: PassengerGhoul
   m_TagString: Enemy
@@ -416,7 +490,7 @@ Transform:
   - {fileID: 8838786020722926145}
   - {fileID: 8838786019952798425}
   - {fileID: 523162955551178387}
-  - {fileID: 8320435726927319903}
+  - {fileID: 6520452378072956308}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -486,34 +560,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5531359, z: 0.8210721}
   m_Center: {x: 0, y: 0.8003218, z: 0.016601562}
---- !u!114 &3877452830462419429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8838786019890915755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2129be95ecf640499f888cc3e98e682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
-  ColorTag: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &5388966372566317996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8838786019890915755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c29348e4c92bc74aaa552302f9a6fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  propulsionForce: 15
-  heightOffset: 1
 --- !u!1 &8838786019898242357
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,17 +736,22 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 8838786019890915756}
+    m_TransformParent: {fileID: 6520452378072956308}
     m_Modifications:
     - target: {fileID: 1169471150031742896, guid: eaaf8e11c4e75a04da87e61ff2224964,
         type: 3}
       propertyPath: m_Name
       value: MagicRing
       objectReference: {fileID: 0}
+    - target: {fileID: 1169471150031742896, guid: eaaf8e11c4e75a04da87e61ff2224964,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1169471150031742899, guid: eaaf8e11c4e75a04da87e61ff2224964,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1169471150031742899, guid: eaaf8e11c4e75a04da87e61ff2224964,
         type: 3}

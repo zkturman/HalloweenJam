@@ -50,10 +50,14 @@ public class SkullWeaponBehaviour : MonoBehaviour
         {
             for (int i = 0; i < affectedObjects.Length; i++)
             {
-                if (affectedObjects[i].tag == "Enemy")
+                if (affectedObjects[i].tag == "JournalSubject")
                 {
                     float ejectAngle = generateContactAngle(affectedObjects[i].gameObject);
                     affectedObjects[i].GetComponent<NetherShardGenerator>().GenerateNetherShard(ejectAngle);
+                }
+                if (affectedObjects[i].tag == "Enemy")
+                {
+                    affectedObjects[i].GetComponent<CreatureController>().StunCreature();
                 }
             }
         }

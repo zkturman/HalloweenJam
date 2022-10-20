@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateController : MonoBehaviour
 {
@@ -54,11 +55,11 @@ public class GameStateController : MonoBehaviour
 
     public void SetGameFinishedState()
     {
-
+        SceneManager.LoadScene("Credits");
     }
 
     public void SetGameOverState()
     {
-
+        SceneManager.LoadScene("GameOver");
     }
 }

@@ -52,8 +52,9 @@ public class MonsterHandler : MonoBehaviour
         for (int i = 0; i < monsters.Count; i++)
         {
             int diceRoll = Random.Range(0, possibleIds.Count);
-            allPassengers[diceRoll] = monsters[i];
-            monsters[i].ID = possibleIds[diceRoll];
+            int assignedId = possibleIds[diceRoll];
+            allPassengers[assignedId] = monsters[i];
+            monsters[i].ID = assignedId;
             possibleIds.RemoveAt(diceRoll);
         }
     }
