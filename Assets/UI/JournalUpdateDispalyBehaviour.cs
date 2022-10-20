@@ -25,10 +25,12 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
     [SerializeField]
     private CustomRenderTexture renderProjector;
     private int currentPageSet = 0;
+    private GameStateController gameStateController;
 
     private void Awake()
     {
         monsterHandler = FindObjectOfType<MonsterHandler>();
+        gameStateController = FindObjectOfType<GameStateController>();
     }
 
     private void OnEnable()
@@ -76,7 +78,10 @@ public class JournalUpdateDispalyBehaviour : MonoBehaviour
     {
         if (currentPageSet == 0)
         {
-            buildHintPage(leftPageElement);
+            if (gameStateController.InOrAboveHintsState())
+            {
+                buildHintPage(leftPageElement);
+            }
         }
         else
         {
