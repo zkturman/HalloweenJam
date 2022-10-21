@@ -218,18 +218,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTimeInSeconds: 1
   storyBlocks:
-  - Text: 'You were just travelling home from work, but a typical commute on the
-      train turned deadly. The train around you seemed to lift in the air, and all
-      you could hear was the screeching of metal and the screams of your fellow passengers. '
-    DurationInSeconds: 7.5
-  - Text: That was the last thing you can remember. Now you wake up in a strange
-      land with an ominous stench to the air. The hairs on the back of your neck
-      stand on end as you realise you're not anywhere near where you last remembered.
-    DurationInSeconds: 8.5
-  - Text: A demonic presence lingers about whispering to you, commanding you seek
-      the red golem. Nothing but fear compels you forward.
-    DurationInSeconds: 5
-  nextSceneName: MainGame
+  - Text: Unomos smiles eerily as he opens a portal behind you. You can see home
+      and the place you came from, and the portal pulls strongly at you.
+    DurationInSeconds: 6
+  - Text: Satisfaction creeps into your mind knowing you've done it. You've made
+      it out. But also a sinking shame lingers. You're responsible for the damning
+      of souls now.
+    DurationInSeconds: 6.5
+  - Text: As you fall through the portal and travel to the other side, you feel as
+      though a piece of you has been left behind, stuck in Unomos' realm. This may
+      be the end, but it is only the start of 'after'.
+    DurationInSeconds: 8
+  nextSceneName: Credits
 --- !u!1001 &1310772000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2df14367b68b548a8d8c54a77560ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: MainGame
+  nextScene: Credits
 --- !u!1001 &2029707068
 PrefabInstance:
   m_ObjectHideFlags: 0

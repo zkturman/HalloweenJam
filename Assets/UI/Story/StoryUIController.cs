@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class BackgroundStoryUIController : MonoBehaviour
+public class StoryUIController : MonoBehaviour
 {
     private VisualElement rootVisualElement;
     private Label storyText;
@@ -27,7 +27,8 @@ public class BackgroundStoryUIController : MonoBehaviour
     }
     [SerializeField]
     private StoryBlock[] storyBlocks = { new StoryBlock("Enter text in editor", 10f) };
-
+    [SerializeField]
+    private string nextSceneName;
 
     private void OnEnable()
     {
@@ -48,7 +49,7 @@ public class BackgroundStoryUIController : MonoBehaviour
             storyText.ToggleInClassList("FadeTransition");
             yield return new WaitForSeconds(fadeTimeInSeconds);
         }
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene(nextSceneName);
     }
 
     public void EnableSkip()

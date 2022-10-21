@@ -14,8 +14,6 @@
                 </ui:VisualElement>
             </ui:GroupBox>
         </ui:GroupBox>
-        <ui:Button text="To Game Over" display-tooltip-when-elided="true" name="GameOverButton" style="width: 15%; left: 80%; bottom: auto; top: 0; position: absolute;" />
-        <ui:Button text="To Credits" display-tooltip-when-elided="true" name="CreditsButton" style="width: 15%; left: 80%; bottom: auto; top: 8%; position: absolute;" />
         <ui:GroupBox name="HudBottom" style="width: 100%; height: 30%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
             <ui:VisualElement name="JournalUpdateBox" style="width: auto; height: 30%; left: auto; background-color: rgba(121, 255, 230, 0); justify-content: center; -unity-text-align: upper-center; align-items: flex-end;">
                 <ui:Label text="&lt;Update message placeholder&gt;" display-tooltip-when-elided="true" name="JournalUpdateText" enable-rich-text="false" style="-unity-text-align: upper-right; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-width: 0.1px; -unity-text-outline-color: rgba(212, 119, 119, 0.8); font-size: 16px;" />
@@ -25,7 +23,7 @@
                 <ui:Label display-tooltip-when-elided="true" name="DialogueLabel" style="-unity-text-align: middle-left; font-size: 20px; -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgb(214, 0, 27); color: rgb(255, 255, 255); text-shadow: 0.75px 0.2px 0.5px rgb(0, 0, 0); width: auto; white-space: normal; max-width: 75%;" />
                 <ui:GroupBox name="LineEndPrompt" style="flex-direction: row; align-items: flex-end; -unity-text-align: upper-left; justify-content: flex-end; width: 75px;">
                     <ui:Label text="Continue" display-tooltip-when-elided="true" name="LineEndText" style="-unity-text-align: upper-right; font-size: 12px; margin-right: 0; padding-right: 0; margin-left: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-top: 0; padding-bottom: 0;" />
-                    <ui:VisualElement name="LineEndImage" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1304905567622442630&amp;guid=25093f909d572634dbaac10a77037811&amp;type=3#arrow-down@2x&apos;); width: 16px; height: 16px; flex-direction: row; justify-content: center; align-items: center; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
+                    <ui:VisualElement name="LineEndImage" style="background-image: url(&apos;project://database/Assets/Packages/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1304905567622442630&amp;guid=25093f909d572634dbaac10a77037811&amp;type=3#arrow-down@2x&apos;); width: 16px; height: 16px; flex-direction: row; justify-content: center; align-items: center; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
                 </ui:GroupBox>
             </ui:VisualElement>
         </ui:GroupBox>

@@ -4,21 +4,26 @@ Label {
 
 Button {
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    background-color: rgb(89, 89, 89);
+    background-color: rgba(96, 19, 9, 255);
     color: rgb(255, 255, 255);
-    border-left-color: rgb(41, 1, 103);
-    border-right-color: rgb(41, 1, 103);
-    border-top-color: rgb(41, 1, 103);
-    border-bottom-color: rgb(41, 1, 103);
+    border-left-color: rgba(99, 15, 35, 255);
+    border-right-color: rgba(99, 15, 35, 255);
+    border-top-color: rgba(99, 15, 35, 255);
+    border-bottom-color: rgba(99, 15, 35, 255);
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+    width: 150px;
+    height: 50px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
 }
 
 Button:hover {
-    background-color: rgb(103, 103, 103);
-    width: auto;
+    background-color: rgba(132, 56, 29, 255);
 }
 
 .backgroundColour {

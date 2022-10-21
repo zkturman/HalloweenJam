@@ -4,8 +4,6 @@ using UnityEngine.UIElements;
 public class MainGameUIController : MonoBehaviour
 {
     private VisualElement rootVisualElement;
-    private Button gameOverButton;
-    private Button creditsButton;
     private VisualElement dialogueBox;
     private Label dialogueLabel;
     private Label speakerNameLabel;
@@ -28,8 +26,6 @@ public class MainGameUIController : MonoBehaviour
     private void OnEnable()
     {
         rootVisualElement = GetComponent<UIDocument>().rootVisualElement;
-        gameOverButton = new SceneButton("GameOverButton", "GameOver").GenerateButton(rootVisualElement);
-        creditsButton = new SceneButton("CreditsButton", "Credits").GenerateButton(rootVisualElement);
         dialogueBox = rootVisualElement.Q<VisualElement>("DialogueBox");
         dialogueBox.visible = false;
         dialogueLabel = new MessageLabel("DialogueLabel").GenerateLabel(rootVisualElement);

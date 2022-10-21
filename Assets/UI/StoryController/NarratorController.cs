@@ -5,12 +5,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class NarratorController : MonoBehaviour
 {
-    private BackgroundStoryUIController uiController;
+    private StoryUIController uiController;
     private int keyPressCounter = 0;
+    [SerializeField]
+    private string nextScene;
     // Update is called once per frame
     private void Awake()
     {
-        uiController = FindObjectOfType<BackgroundStoryUIController>();
+        uiController = FindObjectOfType<StoryUIController>();
     }
     void Update()
     {
@@ -22,7 +24,7 @@ public class NarratorController : MonoBehaviour
             }
             if (keyPressCounter == 1)
             {
-                SceneManager.LoadScene("MainGame");
+                SceneManager.LoadScene(nextScene);
             }
             keyPressCounter++;
         }
