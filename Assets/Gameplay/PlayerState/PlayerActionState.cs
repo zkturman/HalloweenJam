@@ -87,6 +87,7 @@ public class PlayerActionState : MonoBehaviour, ObjectState
 	private ObjectState _nextState;
 	private PlayerDialogueState _dialogueState;
 	private PlayerJournalState _journalState;
+	private PlayerPauseState _pauseState;
 
 	private const float _threshold = 0.01f;
 
@@ -115,6 +116,7 @@ public class PlayerActionState : MonoBehaviour, ObjectState
 		_dialogueDisplay = FindObjectOfType<DialogueDisplayBehaviour>();
 		_dialogueState = GetComponent<PlayerDialogueState>();
 		_journalState = GetComponent<PlayerJournalState>();
+		_pauseState = GetComponent<PlayerPauseState>();
 		_nextState = this;
 		// reset our timeouts on start
 		_jumpTimeoutDelta = JumpTimeout;
@@ -134,6 +136,7 @@ public class PlayerActionState : MonoBehaviour, ObjectState
 		Move();
 		Dialogue();
 		Journal();
+		Pause(); //Order matters, later actions take priority when changing states
 	}
 
 	public void StateLateUpdate()
@@ -144,6 +147,14 @@ public class PlayerActionState : MonoBehaviour, ObjectState
     public void RestoreDefaults()
     {
 		_nextState = this;
+    }
+
+	private void Pause()
+    {
+		if (_input.pause)
+        {
+			_nextState = _pauseState;
+        }
     }
 
 	private void Journal()

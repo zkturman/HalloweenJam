@@ -278,7 +278,7 @@ public class CreatureController : MonoBehaviour
     IEnumerator EnterSurveillanceState()
     {
         currentState = CreatureState.Surveillance;
-        
+        monsterAnimator.SetTrigger("Idle");
         float timer = 0f;
         while (timer < surveillanceTime)
         {
@@ -348,6 +348,7 @@ public class CreatureController : MonoBehaviour
         navMeshAgent.destination = startingPosition;
         navMeshAgent.isStopped = false;
         currentPatrolNavID = -1;  // (So that when it gets to the start point it will increment it to 0 and restart its patrol loop from the beginning
+        monsterAnimator.SetTrigger("Walk");
     }
     
 
@@ -404,26 +405,15 @@ public class CreatureController : MonoBehaviour
     {
         // Freeze creature.
         navMeshAgent.isStopped = true;
-
+        currentState = CreatureState.Stunned;
         // *** Any other 'stunned' AV effects to be put here
         monsterAnimator.SetTrigger("Stun");
 
         // Wait in stunned state
-        float timer = 0f;
-        while (timer < stunnedTime)
-        {
-            yield return null;
-            timer += Time.deltaTime;
-        }
-        
-
-        // Unfreeze creature
-        navMeshAgent.isStopped = false;
+        yield return new WaitForSeconds(stunnedTime);
 
         // When un-stunned, go to Surveillance state to see if the player is still visible
-        EnterSurveillanceState();
-
-        yield break;
+        yield return EnterSurveillanceState();
     }
 
 

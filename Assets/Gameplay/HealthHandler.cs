@@ -11,10 +11,12 @@ public class HealthHandler : MonoBehaviour
     [SerializeField]
     private float secondsOfInvulnerability;
     private PlayerStatUIHandler healthHandler;
+    private GameStateController gameStateController;
 
     private void Awake()
     {
         healthHandler = FindObjectOfType<PlayerStatUIHandler>(true);
+        gameStateController = FindObjectOfType<GameStateController>();
         currentHealth = TotalHealth;
     }
 
@@ -39,7 +41,7 @@ public class HealthHandler : MonoBehaviour
         currentHealth--;
         if (currentHealth == 0)
         {
-
+            gameStateController.SetGameOverState();
         }
         healthHandler.SubtractHealth(1);
         yield return new WaitForSeconds(secondsOfInvulnerability);

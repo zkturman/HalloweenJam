@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a66124c0cf37845acaa1ee391bc448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCharges: 2
+  maxCharges: 4
   lightBurst: {fileID: 3969204072223345595}
   attackRadius: 8
 --- !u!136 &8422349570680377018

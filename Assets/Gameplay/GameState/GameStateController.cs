@@ -55,11 +55,13 @@ public class GameStateController : MonoBehaviour
 
     public void SetGameFinishedState()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("Credits");
     }
 
     public void SetGameOverState()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("GameOver");
     }
 }

@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 4785965665267274939}
   - component: {fileID: 8743538068666526177}
   - component: {fileID: 5210021249193302495}
+  - component: {fileID: 7702978658983682058}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -458,6 +459,7 @@ MonoBehaviour:
   attack: 0
   interact: 0
   journal: 0
+  pause: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -661,6 +663,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f400f4269f7e742b0e1b1ceb46a296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7702978658983682058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a377b6d83389240ac191a36179e46a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &377550680335739367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -774,11 +788,6 @@ PrefabInstance:
       propertyPath: lightBurst
       value: 
       objectReference: {fileID: 7821327848280799111}
-    - target: {fileID: 7633663391238251304, guid: 367e3974a5a510a45a80319615117d95,
-        type: 3}
-      propertyPath: maxCharges
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7633663391238251304, guid: 367e3974a5a510a45a80319615117d95,
         type: 3}
       propertyPath: attackRadius
