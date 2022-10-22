@@ -93,14 +93,15 @@ MonoBehaviour:
   - It's the kid who shaves his head even though he's not even 20.
   - Always on business calls and seems to very frequently lose his temper. He almost
     always gets a seat to himself.
-  - desc4
-  - Weren't they a ballerina?
-  - I see them in the morning sometimes, but it usually looks like they're going
-    home from partying rather than heading to work.
-  - desc7
+  - Great jackets and cool glasses. I really envied how fashionable she was.
+  - That's the tall guy. I haven't seen him before.
+  - I see them in the morning sometimes, usually going home from clubbing rather.
+    Wish I had the time...
   - That poor lad always looked terrified. Maybe he didn't get enough sleep... or
     maybe something else.
-  - desc9
+  - She's absolutely fearless, but seems like a good person.
+  - It's the creepy guy who's always deep in thought. I don't think I've ever seen
+    him move.
   - Always says 'nya' like that means anything to anyone.
   - It's the lady who nevers stops talking about her plans with her husband.
   - She always has this vacant look on her face. I wish there had been a way to help
@@ -114,10 +115,23 @@ MonoBehaviour:
   - Dancers are the tastiest
   - I give them nightmares
   - I like them more than you
-  - Could never get to come down here
+  - A right stoic
   - More cat than human
   - Not actually married
   - My friend possessed her
+  PossibleColorIndicators:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &5321963412192379417
 PrefabInstance:
   m_ObjectHideFlags: 0

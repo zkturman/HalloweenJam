@@ -147,6 +147,7 @@ public class PlayerActionState : MonoBehaviour, ObjectState
     public void RestoreDefaults()
     {
 		_nextState = this;
+		_input.SetCursorState(true);
     }
 
 	private void Pause()
