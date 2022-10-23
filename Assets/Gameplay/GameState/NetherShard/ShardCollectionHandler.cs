@@ -7,6 +7,10 @@ public class ShardCollectionHandler : MonoBehaviour
     private int numberOfShards = 0;
     private PlayerStatUIHandler statUIHandler;
     private GameStateController gameStateController;
+    [SerializeField]
+    private AudioSource collectionSoundPlayer;
+    [SerializeField]
+    private AudioClip collectionSound;
 
     private void Awake()
     {
@@ -22,5 +26,6 @@ public class ShardCollectionHandler : MonoBehaviour
         {
             gameStateController.SetHasAllShardsState();
         }
+        collectionSoundPlayer.PlayOneShot(collectionSound);
     }
 }

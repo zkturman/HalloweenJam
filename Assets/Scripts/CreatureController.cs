@@ -12,9 +12,10 @@ public class CreatureController : MonoBehaviour
 
     public AudioSource chaseSound;
     public AudioSource attackSound;
+    public AudioSource stunSound;
     
     float sightDistance = 3000f;   // How far the creature's 'line of sight' raycast extends
-    float attackDistance = 1f;   // How close the creature needs to be to the player to trigger its attack.
+    float attackDistance = 2.5f;   // How close the creature needs to be to the player to trigger its attack.
     float attackRecoveryTime = 2f;   // How many seconds between an attack and returning to the chase
     float surveillanceTime = 3f;   // How long the creature stays in surveillance mode before returning to its default state
     float stunnedTime = 4f;     // (Perhaps this should be passed through from player when they stun the creature....?)
@@ -118,15 +119,13 @@ public class CreatureController : MonoBehaviour
 
         // Make sure movement is enabled
         navMeshAgent.isStopped = false;
+        monsterAnimator.SetTrigger("Walk");
 
         // Set movement speed
         navMeshAgent.speed = patrolSpeed;
 
         // Set the next patrol destination
         SetNextPatrolDestination();
-
-        // ??? Animation change here???
-        monsterAnimator.SetTrigger("Walk");
     }
 
     void Patrol()
@@ -251,27 +250,28 @@ public class CreatureController : MonoBehaviour
         
         // Pause movement towards the target
         navMeshAgent.isStopped = true;
-
-        // Temporary code
-        Debug.Log("ATTTAAAAACKKK!!!!");
+        monsterAnimator.SetTrigger("Attack");
         attackSound.Play();
-
-        // If this is the first attack on the player, get reference to the player's HealthHandler component
-        if (playerHealthHandler == null)
+        yield return new WaitForSeconds(1f);
+        Vector3 translatedPosition = transform.position - player.transform.position;
+        float distanceFromPlayer = translatedPosition.magnitude;
+        if (distanceFromPlayer < attackDistance)
         {
-            Debug.Log("Acquiring reference to player HealthHandler");
-            playerHealthHandler = player.GetComponentInParent<HealthHandler>();
+            // If this is the first attack on the player, get reference to the player's HealthHandler component
+            if (playerHealthHandler == null)
+            {
+                Debug.Log("Acquiring reference to player HealthHandler");
+                playerHealthHandler = player.GetComponentInParent<HealthHandler>();
+            }
+            // Damage the player
+            playerHealthHandler.TakeHealthDamage();
         }
 
-        monsterAnimator.SetTrigger("Attack");
         // Allow time for animation/attack
         yield return new WaitForSeconds(attackRecoveryTime);
-        // Damage the player
-        playerHealthHandler.TakeHealthDamage();
 
         // Then return to chase mode (which will test if the player is still close enough to attack again)
         EnterChaseMode();
-
     }
 
 
@@ -408,6 +408,7 @@ public class CreatureController : MonoBehaviour
         currentState = CreatureState.Stunned;
         // *** Any other 'stunned' AV effects to be put here
         monsterAnimator.SetTrigger("Stun");
+        stunSound.Play();
 
         // Wait in stunned state
         yield return new WaitForSeconds(stunnedTime);

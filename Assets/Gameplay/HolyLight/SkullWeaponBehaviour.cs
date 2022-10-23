@@ -12,6 +12,14 @@ public class SkullWeaponBehaviour : MonoBehaviour
     [SerializeField]
     private float attackRadius;
     private PlayerStatUIHandler statsHandler;
+    [SerializeField]
+    private AudioSource sfxPlayer;
+    [SerializeField]
+    private AudioClip rechargeSound;
+    [SerializeField]
+    private AudioClip attackSound;
+    [SerializeField]
+    private AudioClip blankFireSound;
 
     private void Awake()
     {
@@ -40,6 +48,11 @@ public class SkullWeaponBehaviour : MonoBehaviour
             remainingCharges--;
             statsHandler.SetNumberOfSkullCharges(remainingCharges);
             affectMonsters();
+            sfxPlayer.PlayOneShot(attackSound);
+        }
+        else
+        {
+            sfxPlayer.PlayOneShot(blankFireSound);
         }
     }
 
@@ -73,8 +86,12 @@ public class SkullWeaponBehaviour : MonoBehaviour
 
     public void Recharge()
     {
-        remainingCharges = maxCharges;
-        statsHandler.SetNumberOfSkullCharges(remainingCharges);
+        if (remainingCharges != maxCharges)
+        {
+            remainingCharges = maxCharges;
+            statsHandler.SetNumberOfSkullCharges(remainingCharges);
+            sfxPlayer.PlayOneShot(rechargeSound);
+        }
     }
 
     private void OnDrawGizmosSelected()

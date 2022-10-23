@@ -13,6 +13,12 @@ public class HealthHandler : MonoBehaviour
     private PlayerStatUIHandler healthHandler;
     private GameStateController gameStateController;
 
+    [SerializeField]
+    private AudioSource injuredSoundPlayer;
+    [SerializeField]
+    private AudioClip[] injuredSounds;
+    
+
     private void Awake()
     {
         healthHandler = FindObjectOfType<PlayerStatUIHandler>(true);
@@ -27,8 +33,6 @@ public class HealthHandler : MonoBehaviour
 
     public void TakeHealthDamage()
     {
-        Debug.Log("HealthHander.TakeHealthDamage() has been called...");
-
         if (!takingDamage)
         {
             takingDamage = true;
@@ -44,8 +48,17 @@ public class HealthHandler : MonoBehaviour
             gameStateController.SetGameOverState();
         }
         healthHandler.SubtractHealth(1);
+        setAudioSourceWithRandomClip();
+        injuredSoundPlayer.Play();
         yield return new WaitForSeconds(secondsOfInvulnerability);
         takingDamage = false;
+    }
+
+    private void setAudioSourceWithRandomClip()
+    {
+        int diceRoll = Random.Range(0, injuredSounds.Length);
+        AudioClip clipToPlay = injuredSounds[diceRoll];
+        injuredSoundPlayer.clip = clipToPlay;
     }
 
 }

@@ -8,6 +8,10 @@ public class JournalDisplayBehaviour : MonoBehaviour
     private MainGameUIController mainGameUIController;
     [SerializeField]
     private float displayTimeInSeconds = 3f;
+    [SerializeField]
+    private AudioSource journalUpdateSound;
+    [SerializeField]
+    private float clipDurationInSeconds;
     private const string JOURNAL_UPDATE_TEMPLATE = "Updated description for passenger No. {0}.";
 
     public void IndicateUpdatedEntry(int passengerId)
@@ -21,7 +25,15 @@ public class JournalDisplayBehaviour : MonoBehaviour
     {
         mainGameUIController.AddJournalUpdateText(updateMessage);
         mainGameUIController.DisplayJournalUpdateMessage(true);
+        StartCoroutine(playSoundEffect());
         yield return new WaitForSeconds(displayTimeInSeconds);
         mainGameUIController.DisplayJournalUpdateMessage(false);
+    }
+
+    private IEnumerator playSoundEffect()
+    {
+        journalUpdateSound.Play();
+        yield return new WaitForSeconds(clipDurationInSeconds);
+        journalUpdateSound.Stop();
     }
 }

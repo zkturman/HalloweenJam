@@ -35,7 +35,7 @@ public class PlayerCollisionHandler : MonoBehaviour
             {
                 skullBehaviour.gameObject.SetActive(true);
                 skullBehaviour.enabled = true;
-                Destroy(other.gameObject);
+                other.GetComponent<SkullOverworldBehaviour>().PickupSkull();
                 gameStateController.SetRetrievedSkullState();
             }
         }
