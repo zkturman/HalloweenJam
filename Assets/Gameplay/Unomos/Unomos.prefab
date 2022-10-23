@@ -281,24 +281,25 @@ MonoBehaviour:
   - In this cavern lies a magical object carved by my sister...
   - Made from the spirits of men. If you find this tool, I will help you.
   postSkullLines:
-  - I see you've made the right decision.
-  - Sometimes immoral actions lead to the right outcome that is.
-  - Now that you have the skull, you can finish my bidding.
-  - My sister has hidden shards within the Passengers, and I need them.
-  - Why is not something I'll explain to the likes of you. However, collect the shards,
-    and I will provide you with a way out of this realm.
-  - However, I cannot use the Effulgent Skull you now possess, which is needed to
-    separate the shards from their souls.
+  - I see you've found the Effulgent Skull, a sacred item my sister forged. Her wards
+    have prevented me from using this weapon.
+  - She has also hidden Nether Shards within the fallen Passengers. These shards
+    bind to the souls of humans, and I must feed on them. Desperately.
+  - Now that you have the skull, you can finish my bidding and cleave the shards
+    from their souls.
+  - Why yes, this may very well curse the deceased. Sometimes, however, immoral actions
+    lead to the right outcome.
   - 'The shards can be found by finding the Passengers with these descriptions:'
   hintLines:
   - You can check your progress in your journal by pressing J.
   - If you've chosen the wrong Passengers, you can recharge your weapon by standing
-    on the altar you found it.
+    on the altar where you found it.
   - If you're mind has gone, the Passengers containing shards are
   postShardsLines:
   - Looks like you've done it.
-  - Gathered the shards and damned the souls of the Passengers on the train.
+  - Gathered the shards and damned the souls of your fellow Passengers.
   - I'll hold up my end of the bargain.
   - You'll be free to enter your realm once again, though a shard of your morality
     will linger behind.
+  - Just another morsel for me to feed upon.
   - Good bye my minion...

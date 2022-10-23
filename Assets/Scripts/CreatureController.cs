@@ -158,16 +158,13 @@ public class CreatureController : MonoBehaviour
 
         // Make sure movement is enabled
         navMeshAgent.isStopped = false;
+        monsterAnimator.SetTrigger("Run");
 
         // Set movement speed
         navMeshAgent.speed = chaseSpeed;
 
         // Set destination to player's current location
         navMeshAgent.destination = player.transform.position;
-
-
-        // ??? Animation change here???
-        monsterAnimator.SetTrigger("Run");
     }
 
 
@@ -264,7 +261,10 @@ public class CreatureController : MonoBehaviour
                 playerHealthHandler = player.GetComponentInParent<HealthHandler>();
             }
             // Damage the player
-            playerHealthHandler.TakeHealthDamage();
+            if (currentState == CreatureState.Attack)
+            {
+                playerHealthHandler.TakeHealthDamage();
+            }
         }
 
         // Allow time for animation/attack
@@ -409,10 +409,17 @@ public class CreatureController : MonoBehaviour
         // *** Any other 'stunned' AV effects to be put here
         monsterAnimator.SetTrigger("Stun");
         stunSound.Play();
-
+        BoxCollider[] allColliders = GetComponents<BoxCollider>();
+        foreach(BoxCollider collider in allColliders)
+        {
+            collider.enabled = false;
+        }
         // Wait in stunned state
         yield return new WaitForSeconds(stunnedTime);
-
+        foreach(BoxCollider collider in allColliders)
+        {
+            collider.enabled = true;
+        }
         // When un-stunned, go to Surveillance state to see if the player is still visible
         yield return EnterSurveillanceState();
     }

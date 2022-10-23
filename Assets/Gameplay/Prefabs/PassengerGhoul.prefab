@@ -787,8 +787,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolNavPoints: []
-  patrolSpeed: 0.5
-  chaseSpeed: 2
+  patrolSpeed: 0.4
+  chaseSpeed: 3
   chaseSound: {fileID: 5077529179062878815}
   attackSound: {fileID: 4181008242751172186}
   stunSound: {fileID: 4544946946873906476}

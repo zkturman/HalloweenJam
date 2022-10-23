@@ -148,6 +148,10 @@ public class PlayerActionState : MonoBehaviour, ObjectState
     {
 		_nextState = this;
 		_input.SetCursorState(true);
+		_input.interact = false;
+		_input.journal = false;
+		_input.pause = false;
+		_input.attack = false;
     }
 
 	private void Pause()
