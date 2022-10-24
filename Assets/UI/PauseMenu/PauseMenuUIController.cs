@@ -20,6 +20,7 @@ public class PauseMenuUIController : MonoBehaviour
         continueButton.RegisterCallback<ClickEvent>(ev => logPressedContinueAction());
         controlsButton = rootVisualElement.Q<Button>("ControlsButton");
         controlsButton.RegisterCallback<ClickEvent>(ev => openControlsUI());
+        controlsUI.SetActive(false);
     }
 
     private void logPressedContinueAction()

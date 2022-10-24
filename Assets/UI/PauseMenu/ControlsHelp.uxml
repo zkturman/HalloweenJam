@@ -40,20 +40,22 @@
                     </ui:GroupBox>
                     <ui:Label text="Use Effulgent Skull attack" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
                 </ui:GroupBox>
-                <ui:GroupBox name="PauseGroup" style="flex-direction: row; align-items: center; justify-content: space-between; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+                <ui:GroupBox name="MovementGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
                     <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
                         <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_esc_key.png?fileID=2800000&amp;guid=6dcd602782efbc0429f86bfea1ff3627&amp;type=3#keyboard_esc_key&apos;); width: 64px; height: 64px;" />
+                        <ui:Label text="or" display-tooltip-when-elided="true" name="OptionControlText" style="margin-left: 10px; margin-right: 10px; font-size: 25px;" />
+                        <ui:VisualElement name="KeyOption2" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_P_key.png?fileID=2800000&amp;guid=f8d2afcb1c2199140a9c73b2aa3f9fd7&amp;type=3#keyboard_P_key&apos;); width: 64px; height: 64px;" />
                     </ui:GroupBox>
                     <ui:Label text="Open/close pause menu" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
                 </ui:GroupBox>
                 <ui:Label text="Journal Controls" display-tooltip-when-elided="true" name="JournalTitle" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: bold; font-size: 30px; margin-top: 25px;" />
-                <ui:GroupBox name="PauseGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox name="JournalOpenGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
                     <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
                         <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_J_key.png?fileID=2800000&amp;guid=a6f16aa25a52553409060d493a78cfc4&amp;type=3#keyboard_J_key&apos;); width: 64px; height: 64px;" />
                     </ui:GroupBox>
                     <ui:Label text="Open/close journal" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
                 </ui:GroupBox>
-                <ui:GroupBox name="MovementGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:GroupBox name="PageTurnGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
                     <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
                         <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/left_right_arrow_keys.png?fileID=2800000&amp;guid=52c7376753abdd4449c3ac1a42d50f13&amp;type=3#left_right_arrow_keys&apos;); width: 64px; height: 64px;" />
                         <ui:Label text="or" display-tooltip-when-elided="true" name="OptionControlText" style="margin-left: 10px; margin-right: 10px; font-size: 25px;" />

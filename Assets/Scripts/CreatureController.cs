@@ -17,8 +17,8 @@ public class CreatureController : MonoBehaviour
     float sightDistance = 3000f;   // How far the creature's 'line of sight' raycast extends
     float attackDistance = 2.5f;   // How close the creature needs to be to the player to trigger its attack.
     float attackRecoveryTime = 2f;   // How many seconds between an attack and returning to the chase
-    float surveillanceTime = 3f;   // How long the creature stays in surveillance mode before returning to its default state
-    float stunnedTime = 4f;     // (Perhaps this should be passed through from player when they stun the creature....?)
+    float surveillanceTime = 2f;   // How long the creature stays in surveillance mode before returning to its default state
+    float stunnedTime = 3f;     // (Perhaps this should be passed through from player when they stun the creature....?)
 
     int currentPatrolNavID = -1;
     Vector3 startingPosition;
@@ -278,24 +278,28 @@ public class CreatureController : MonoBehaviour
     IEnumerator EnterSurveillanceState()
     {
         currentState = CreatureState.Surveillance;
-        monsterAnimator.SetTrigger("Idle");
-        float timer = 0f;
-        while (timer < surveillanceTime)
+        if (currentState == CreatureState.Surveillance) //att3emt to fix race condition without redoing surveillance state
         {
-            yield return null;
-
-            // *** Detect if creature has changed state ***
-            if (currentState != CreatureState.Surveillance)
+            monsterAnimator.SetTrigger("Idle");
+        
+            float timer = 0f;
+            while (timer < surveillanceTime)
             {
-                // No longer in surveillance state, so end the coroutine without doing anything else
-                yield break;
-                Debug.Log("WARNING: Coroutine EnterSurveillanceState should have stopped, so this message shouldn't be seen!");
-            }
-            timer += Time.deltaTime;
-        }
+                yield return null;
 
-        // Once the surveillance timer runs out (without spotting the player), return to normal state
-        ReturnToNormalState();
+                // *** Detect if creature has changed state ***
+                if (currentState != CreatureState.Surveillance)
+                {
+                    // No longer in surveillance state, so end the coroutine without doing anything else
+                    yield break;
+                    Debug.Log("WARNING: Coroutine EnterSurveillanceState should have stopped, so this message shouldn't be seen!");
+                }
+                timer += Time.deltaTime;
+            }
+
+            // Once the surveillance timer runs out (without spotting the player), return to normal state
+            ReturnToNormalState();
+        }
     }
 
 
