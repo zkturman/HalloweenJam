@@ -1,4 +1,4 @@
-# <p align="center">How to Contribute to TiltaPong</p>
+# <p align="center">How to Contribute to Halloween Jam</p>
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ If you need help with your changes, reach out to the project owner.
 
 ## <a name="Documentation"></a> Making Documentation Changes
 
-Documentation is one of the key areas that keep projects like TiltaPong running smoothly. As multiple people are working on the project, being able to find information is crucial to keep game development efficient.
+Documentation is one of the key areas that keep projects like HalloweenJam running smoothly. As multiple people are working on the project, being able to find information is crucial to keep game development efficient.
 
 If working with a shareable document, such as Google Docs or Kanban boards in Trello, simply follow the appropriate link and start editing. Certain documents may limit direct edits to subsets of people. If you feel you should have security to make changes and cannot, reach out to the project owner.
 
@@ -64,7 +64,7 @@ For this method, you will need to have Git installed on your computer. Git is a 
 
 1. Open either PowerShell or a terminal window
 1. ```CD``` to the directory you want to store your copy of this project
-1. Enter ```git clone https://github.com/zkturman/TiltaPong.git```
+1. Enter ```git clone https://github.com/zkturman/HalloweenJam.git```
     - You may be prompted for credentials at this stage. You can set these properties using a [one-time command](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
         - ```git config --global user.name "John Doe"```
         - ```git config --global user.email johndoe@example.com```
@@ -79,31 +79,31 @@ For this method, you will need to have SourceTree installed on your computer. So
 
 1. Open SourceTree
 1. Open a new tab and click the 'Clone' button
-1. In 'Source Path', enter ```https://github.com/zkturman/TiltaPong.git```
+1. In 'Source Path', enter ```https://github.com/zkturman/HalloweenJam.git```
     - Note: this can be copied above by clicking the grey/green Code button and copying the HTTPS URL
 1. In 'Destination Path', enter the location on your computer you want this repository to be copied into
-1. In 'Name', enter the name you want for your local project folder. E.g., TiltaPong
+1. In 'Name', enter the name you want for your local project folder. E.g., HalloweenJam
 1. Click 'Advanced options' and change 'Checkout branch' to 'development'
 1. Click the 'Clone' button
 
 ### <a name="RunningTheProject"></a> Running the Project
 
-To run this project, you will need UnityHub installed on your computer. [It can be downloaded here.](https://unity.com/download) Once downloaded, you will need to download Unity version 2021.3.9f1. To install this version, follow these steps:
+To run this project, you will need UnityHub installed on your computer. [It can be downloaded here.](https://unity.com/download) Once downloaded, you will need to download Unity version 2021.3.11f1. To install this version, follow these steps:
 
 1. Open UnityHub
 1. Click the 'Installs' tab (on the left)
 1. Click the 'Install Editor' button
-1. Locate version 2021.3.10.f1 in the 'Official Releases' tab
+1. Locate version 2021.3.11.f1 in the 'Official Releases' tab
 1. Click the 'Install' button
 
-To open the TiltaPong project:
+To open the HalloweenJam project:
 
 1. Open UnityHub
 1. Click the 'Projects' tab on the left (if not already selected)
 1. Click 'Open' >> 'Add Project from Disk'
-1. Select your TiltaPong folder
+1. Select your HalloweenJam folder
 1. Click 'Add Project'
-1. If the project does not open automatically, click the TiltaPong row in UnityHub to open the project.
+1. If the project does not open automatically, click the HalloweenJam row in UnityHub to open the project.
 
 Currently, there are no special run or build instructions. If you would like to run the game from the start, follow these steps:
 
@@ -124,7 +124,7 @@ Once finished with your changes, you will need to perform some actions to get th
 ### <a name="ChangesUsingGit"></a> Using Git + Command Line
 
 1. Open either PowerShell or a terminal window
-1. ```CD``` to your TiltaPong directory
+1. ```CD``` to your HalloweenJam directory
 1. Enter ```git status``` and review all the files you've made changes to.
     - If you have unwanted changes, you can undo all changes to a file using this command: ```git checkout HEAD -- my-file.extension```
 1. To prepare these changes for saving, enter ```git add .```, which will add all your local changes.
@@ -137,7 +137,7 @@ Once finished with your changes, you will need to perform some actions to get th
 ### <a name="ChangesUsingSourceTree"></a> Using SourceTree
 
 1. Open SourceTree
-1. Open your TiltaPong tab/repository
+1. Open your HalloweenJam tab/repository
 1. Click the 'Commit' button and add a message that describes your changes
 1. Click the 'Stage All' button, or select certain files and click the 'Stage Selected' button
 1. Tick the 'Push changes immediately to <BRANCHNAME>' checkbox

@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox name="HintBox" style="height: 15%;">
+        <ui:Label text="&lt;Hint 1&gt;" display-tooltip-when-elided="true" name="HintText" style="font-size: 16px; -unity-font-style: italic; white-space: normal;" />
+    </ui:GroupBox>
+</ui:UXML>

@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox name="InfoGroup" style="width: 285px; height: 150px; flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+        <ui:VisualElement name="VisualIdentifier" style="width: 48px; height: 48px; background-color: rgb(255, 255, 255); border-left-color: rgba(0, 0, 0, 255); border-right-color: rgba(0, 0, 0, 255); border-top-color: rgba(0, 0, 0, 255); border-bottom-color: rgba(0, 0, 0, 255); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px;" />
+        <ui:GroupBox name="TextInfo" style="width: 80%; height: 90%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+            <ui:Label text="No. 1" display-tooltip-when-elided="true" name="PassengerId" style="width: 80%; -unity-font-style: bold; font-size: 15px;" />
+            <ui:Label text="&lt;description of a monster is usually a sentence or two. like maybe one more&gt;" display-tooltip-when-elided="true" name="InfoText" style="width: auto; white-space: normal;" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>

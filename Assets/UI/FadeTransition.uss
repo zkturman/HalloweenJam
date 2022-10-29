@@ -1,0 +1,11 @@
+Label.FadeTransition {
+    opacity: 0;
+}
+
+.Bottom {
+    top: 100%;
+}
+
+.Top {
+    top: -100%;
+}

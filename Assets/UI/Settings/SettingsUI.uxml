@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/BasicStyles.uss?fileID=7433441132597879392&amp;guid=ae15515b853940a4cb7567c8d8bc16da&amp;type=3#BasicStyles" />
+    <ui:VisualElement name="Background" class="backgroundColour" style="width: 100%; height: 100%; justify-content: space-between; align-items: center;">
+        <ui:Label text="Settings" display-tooltip-when-elided="true" name="SettingsTitle" style="-unity-text-align: upper-center; font-size: 30px;" />
+        <ui:GroupBox name="SettingsGroup" style="flex-basis: 50%; width: 100%; align-items: center; justify-content: center;">
+            <ui:Label text="&lt;Needs completing&gt;" display-tooltip-when-elided="true" />
+        </ui:GroupBox>
+        <ui:GroupBox name="SettingsButtons" class="buttonBox buttonWideBox" style="flex-direction: row; justify-content: space-between;">
+            <ui:Button text="Save" display-tooltip-when-elided="true" name="SaveButton" style="width: 45%;" />
+            <ui:Button text="Back" display-tooltip-when-elided="true" name="BackButton" style="width: 45%;" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

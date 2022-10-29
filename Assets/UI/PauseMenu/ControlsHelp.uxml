@@ -1,0 +1,70 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/BasicStyles.uss?fileID=7433441132597879392&amp;guid=ae15515b853940a4cb7567c8d8bc16da&amp;type=3#BasicStyles" />
+    <ui:VisualElement name="Background" class="documentBackground" style="width: 80%; height: 80%; left: 10%; top: 10%; align-items: center;">
+        <ui:Label text="Controls" display-tooltip-when-elided="true" name="Title" style="color: rgb(255, 255, 255); font-size: 35px; -unity-font-style: bold; -unity-text-align: upper-center; top: auto; border-top-width: 50px;" />
+        <ui:GroupBox name="ControlGroup" style="flex-direction: row; justify-content: space-between; width: 80%; height: 75%; margin-bottom: 25px;">
+            <ui:GroupBox name="NavigationControls" style="font-size: 25px; color: rgb(255, 255, 255); width: 40%;">
+                <ui:Label text="Navigation" display-tooltip-when-elided="true" name="NavigationTitle" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: bold; font-size: 30px;" />
+                <ui:GroupBox name="MovementGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/arrowkeys.png?fileID=2800000&amp;guid=089583caa5f190848b9a4d2931abd578&amp;type=3#arrowkeys&apos;); width: 64px; height: 64px;" />
+                        <ui:Label text="or" display-tooltip-when-elided="true" name="OptionControlText" style="margin-left: 10px; margin-right: 10px;" />
+                        <ui:VisualElement name="KeyOption2" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/awsd.png?fileID=2800000&amp;guid=27a97bc76bca58c47902b90f58297fc9&amp;type=3#awsd&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Move and strafe" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="ShiftGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_shift_key.png?fileID=2800000&amp;guid=bdbe31f2353f0894585d194243710b1d&amp;type=3#keyboard_shift_key&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Sprint (while moving)" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="LookGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/mouse_none.png?fileID=2800000&amp;guid=66fde27339dfccf4ab77a897cb7ac890&amp;type=3#mouse_none&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Adjust view" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px;" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+            <ui:GroupBox name="ActionControls" style="width: 40%;">
+                <ui:Label text="Actions" display-tooltip-when-elided="true" name="ActionTitle" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: bold; font-size: 30px;" />
+                <ui:GroupBox name="InteractGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_E_key.png?fileID=2800000&amp;guid=e91eda631d222324b904b9657ba67d5e&amp;type=3#keyboard_E_key&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Start/progress dialogue" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="AttackGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/mouse_left.png?fileID=2800000&amp;guid=99015ae45bcdf27439bf40af93a1d817&amp;type=3#mouse_left&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Use Effulgent Skull attack" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="MovementGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_esc_key.png?fileID=2800000&amp;guid=6dcd602782efbc0429f86bfea1ff3627&amp;type=3#keyboard_esc_key&apos;); width: 64px; height: 64px;" />
+                        <ui:Label text="or" display-tooltip-when-elided="true" name="OptionControlText" style="margin-left: 10px; margin-right: 10px; font-size: 25px;" />
+                        <ui:VisualElement name="KeyOption2" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_P_key.png?fileID=2800000&amp;guid=f8d2afcb1c2199140a9c73b2aa3f9fd7&amp;type=3#keyboard_P_key&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Open/close pause menu" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
+                </ui:GroupBox>
+                <ui:Label text="Journal Controls" display-tooltip-when-elided="true" name="JournalTitle" style="color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: bold; font-size: 30px; margin-top: 25px;" />
+                <ui:GroupBox name="JournalOpenGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/keyboard_J_key.png?fileID=2800000&amp;guid=a6f16aa25a52553409060d493a78cfc4&amp;type=3#keyboard_J_key&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Open/close journal" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
+                </ui:GroupBox>
+                <ui:GroupBox name="PageTurnGroup" style="flex-direction: row; align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:GroupBox name="InputGroup" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="KeyOption1" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/left_right_arrow_keys.png?fileID=2800000&amp;guid=52c7376753abdd4449c3ac1a42d50f13&amp;type=3#left_right_arrow_keys&apos;); width: 64px; height: 64px;" />
+                        <ui:Label text="or" display-tooltip-when-elided="true" name="OptionControlText" style="margin-left: 10px; margin-right: 10px; font-size: 25px;" />
+                        <ui:VisualElement name="KeyOption2" style="background-image: url(&apos;project://database/Assets/Controller%20Icons%20Pack%20(by%20NullSave)/Textures/Filled/64/awsd_ad_only.png?fileID=2800000&amp;guid=cd2c414d651b5ff4dbdde522a1cf29d5&amp;type=3#awsd_ad_only&apos;); width: 64px; height: 64px;" />
+                    </ui:GroupBox>
+                    <ui:Label text="Move and strafe" display-tooltip-when-elided="true" name="DescriptionText" style="margin-left: 20px; font-size: 25px;" />
+                </ui:GroupBox>
+            </ui:GroupBox>
+        </ui:GroupBox>
+        <ui:Button text="Back" display-tooltip-when-elided="true" name="BackButton" />
+    </ui:VisualElement>
+</ui:UXML>
